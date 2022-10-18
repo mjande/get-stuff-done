@@ -1,3 +1,36 @@
+$orange-crayola: #ff6b35ff;
+$peach-crayola: #f7c59fff;
+$beige: #efefd0ff;
+$usafa-blue: #004e89ff;
+$sapphire-blue: #1a659eff;
+
+html {
+  height: 100%;
+  height: 100%;
+  background-color: $beige;
+}
+
 body {
-  background-color: red;
+  border: solid;
+  height: 85%;
+  margin: 3rem;
+  border-radius: 2rem;
+  box-shadow: 5px 5px 10px $usafa-blue;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background-color: $sapphire-blue;
+  height: 3rem;
+  border-radius: 2rem 2rem 0 0;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 0 1rem;
+}
+
+main {
+  display: flex;
 }
