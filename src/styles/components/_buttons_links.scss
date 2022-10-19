@@ -1,5 +1,4 @@
-$powder-blue: #a8dadcff;
-$celadon-blue: #457b9dff;
+@use '../variables' as *;
 
 button {
   width: 125px;
@@ -20,7 +19,7 @@ button {
   }
 
   &:active {
-    background-color: $powder-blue;
+    background-color: $electric-blue;
     opacity: 1;
     top: 0.1rem;
   }

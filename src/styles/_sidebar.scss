@@ -1,7 +1,7 @@
-$peach-crayola: #f7c59fff;
+@use './variables' as *;
 
 aside {
-  background: $peach-crayola;
+  background-color: rgba(243, 220, 206, 0.4);
   height: 100%;
   flex: 1;
   min-width: 200px;
