@@ -1,4 +1,8 @@
-const displayProjectsIndex = () => {
+const displayProjectsIndex = (tasks) => {
+  displayCreateTaskBtn();
+};
+
+const displayCreateTaskBtn = () => {
   const plusSign = document.createElement("i");
   plusSign.className = "fa-solid fa-plus";
   const newTaskButton = document.createElement("button");
@@ -6,8 +10,8 @@ const displayProjectsIndex = () => {
   newTaskButton.textContent = "Create task";
   newTaskButton.prepend(plusSign);
 
-  const projects = document.querySelector('main');
-  projects.appendChild(newTaskButton);
+  const mainContainer = document.querySelector('main');
+  mainContainer.appendChild(newTaskButton);
 };
 
 export { displayProjectsIndex };
