@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  mode: 'production',
   entry: './src/index.js',
   output: {
     filename: "main.js",
@@ -10,7 +11,11 @@ module.exports = {
     rules: [
       {
         test: /\.(scss)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [ 'style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        use: 'asset/resource',
       },
     ],
   },

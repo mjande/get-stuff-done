@@ -15,7 +15,7 @@ body {
   height: 85%;
   margin: 3rem;
   border-radius: 2rem;
-  box-shadow: 5px 5px 10px $usafa-blue;
+  box-shadow: 5px 5px 10px grey;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -29,8 +29,17 @@ nav {
   align-items: center;
   color: white;
   padding: 0 1rem;
+  box-shadow: 0 1px 10px grey;
+  z-index: 1;
+  border-bottom: solid black;
+}
+
+.main-container {
+  display: flex;
+  height: 100%;
 }
 
 main {
-  display: flex;
+  height: 100%;
+  min-width: 400px;
 }
