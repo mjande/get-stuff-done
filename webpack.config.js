@@ -5,6 +5,7 @@ module.exports = {
   entry: './src/index.js',
   devtool: 'inline-source-map',
   output: {
+    publicPath: '',
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
   },
@@ -16,7 +17,7 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        use: 'asset/resource',
+        type: 'asset/resource',
       },
     ],
   },
