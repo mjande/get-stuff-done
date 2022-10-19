@@ -1,13 +1,13 @@
-$orange-crayola: #ff6b35ff;
-$peach-crayola: #f7c59fff;
-$beige: #efefd0ff;
-$usafa-blue: #004e89ff;
-$sapphire-blue: #1a659eff;
+$imperial-red: #e63946ff;
+$honeydew: #f1faeeff;
+$powder-blue: #a8dadcff;
+$celadon-blue: #457b9dff;
+$prussian-blue: #1d3557ff;
 
 html {
   height: 100%;
   height: 100%;
-  background-color: $beige;
+  background-color: $honeydew;
 }
 
 body {
@@ -22,7 +22,7 @@ body {
 }
 
 nav {
-  background-color: $sapphire-blue;
+  background-color: $prussian-blue;
   height: 3rem;
   border-radius: 2rem 2rem 0 0;
   display: flex;
@@ -42,4 +42,11 @@ nav {
 main {
   height: 100%;
   min-width: 400px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none;
 }

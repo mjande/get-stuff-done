@@ -1,0 +1,27 @@
+$powder-blue: #a8dadcff;
+$celadon-blue: #457b9dff;
+
+button {
+  width: 125px;
+  padding: 0.5rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  opacity: 0.5;
+  font-size: 1rem;
+  background-color: transparent;
+  border-radius: 1rem;
+  border: solid grey;
+  position: relative;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:active {
+    background-color: $powder-blue;
+    opacity: 1;
+    top: 0.1rem;
+  }
+}
