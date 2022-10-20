@@ -1,8 +1,10 @@
 $imperial-red: rgba(230, 57, 70, 1);
-$electric-blue: rgba(135, 241, 255, 1);
-$champagne-pink: rgba(243, 220, 206, 0.4);
-$wheat: rgba(234, 210, 172, 1);
+$honeydew: rgba(241, 250, 238, 0.4);
+$powder-blue: rgba(168, 218, 220, 1);
+$celadon-blue: rgba(69, 123, 157, 1);
 $prussian-blue: rgba(29, 53, 87, 1);
+$desert-sand: rgba(237, 204, 171, 0.75);
+
 
 @font-face {
   font-family: 'Righteous';
@@ -14,7 +16,7 @@ $prussian-blue: rgba(29, 53, 87, 1);
 @font-face {
   font-family: 'Lora';
   font-style: normal;
-  font-weight: normal;
+  font-weight: 100 1000;
   src:
     url('../fonts/Lora/Lora-VariableFont_wght.ttf') format('truetype');
 }

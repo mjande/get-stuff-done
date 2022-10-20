@@ -21,10 +21,11 @@ button {
 
   &:hover {
     opacity: 1;
+    background-color: $powder-blue;
   }
 
   &:active {
-    background-color: $electric-blue;
+    background-color: $celadon-blue;
     opacity: 1;
     top: 0.1rem;
   }

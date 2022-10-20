@@ -1,6 +1,8 @@
 @use './variables' as *;
 
 aside {
+  box-sizing: border-box;
+  padding: 1rem;
   background-color: rgba(243, 220, 206, 0.4);
   height: 100%;
   flex: 1;
@@ -8,4 +10,10 @@ aside {
   max-width: 300px;
   border-radius: 0 0 0 2rem;
   box-shadow: 2px 0 10px grey;
+}
+
+.projects-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
