@@ -1,14 +1,19 @@
 @use '../variables' as *;
 
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
 button {
-  width: 125px;
+  width: fit-content;
   padding: 0.5rem;
   white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 0.25rem;
   opacity: 0.5;
-  font-size: 1rem;
+  font-size: 0.75rem;
   background-color: transparent;
   border-radius: 1rem;
   border: solid grey;
