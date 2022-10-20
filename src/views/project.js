@@ -1,5 +1,5 @@
 // Import functions
-import { create as createProject } from "../controllers/projectsController";
+import { displayNewProjectForm } from "../views/project-form";
 
 function loadNewButtons() {
   const container = document.querySelector(".new-project");
@@ -7,36 +7,11 @@ function loadNewButtons() {
   buttonsContainer.className = "buttons";
   container.firstChild.replaceWith(buttonsContainer);
 
-  loadNewTaskButton();
+  // loadNewTaskButton();
   loadNewProjectButton();
 };
 
-const displayNewProjectForm = () => {
-  const form = document.createElement("form");
-  form.onsubmit = createProject;
-  
-  const nameLabel = document.createElement("label");
-  nameLabel.for = "name";
-  nameLabel.textContent = "Project Name:";
-  const nameInput = document.createElement("input");
-  nameInput.type = "text";
-  nameInput.id = "name";
-
-  const submitBtn = document.createElement("button");
-  submitBtn.type = "button";
-  submitBtn.className = "create-project-button"
-  submitBtn.addEventListener("click", createProject);
-  submitBtn.textContent = "Create";
-  
-  const formDiv = document.querySelector(".new-project");
-  formDiv.className = "new-project";
-  formDiv.innerHTML = "";
-  form.appendChild(nameLabel);
-  form.appendChild(nameInput);
-  form.appendChild(submitBtn);
-  formDiv.appendChild(form);
-}
-
+/* 
 const loadNewTaskButton = () => {
   const plusSign = document.createElement("i");
   plusSign.className = "fa-solid fa-plus";
@@ -50,6 +25,7 @@ const loadNewTaskButton = () => {
   const buttonsContainer = document.querySelector(".buttons");
   buttonsContainer.appendChild(newTaskBtn);
 }
+*/
 
 const loadNewProjectButton = () => {
   const plusSign = document.createElement("i");
