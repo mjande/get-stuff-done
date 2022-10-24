@@ -1,5 +1,6 @@
 import * as task from '../models/task';
-import { getTaskName } from "../views/task-form";
+import { getTaskName, showTaskFormBtn } from "../views/task-form";
+import { appendTask } from '../views/content';
 
 export function createTask(project) {
   // Collect inputs for new task
@@ -11,4 +12,8 @@ export function createTask(project) {
   // Add that task to the relevant project
   project.addTask(newTask);
   project.save();
+
+  // Update tasks in project display
+  showTaskFormBtn(project);
+  appendTask(newTask);
 };

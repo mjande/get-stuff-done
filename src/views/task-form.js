@@ -1,5 +1,18 @@
 import { createTask } from "../controllers/tasks-controller";
 
+function showTaskFormBtn(project) {
+  const newTaskDiv = document.querySelector(".new-task");
+  newTaskDiv.innerHTML = "";
+
+  const taskBtn = document.createElement("button");
+  taskBtn.type = "button";
+  taskBtn.textContent = "New Task";
+  taskBtn.addEventListener("click", () => {
+  showTaskForm(project); 
+  });
+  newTaskDiv.appendChild(taskBtn);
+};
+
 function showTaskForm(project) {
   const newTaskDiv = document.querySelector(".new-task");
   newTaskDiv.innerHTML = "";
@@ -19,6 +32,7 @@ function showTaskForm(project) {
 
   const submitBtn = document.createElement("button");
   submitBtn.textContent = "Add Task";
+  submitBtn.type = "button";
   submitBtn.addEventListener("click", () => {
     createTask(project);
   });
@@ -29,4 +43,4 @@ function getTaskName() {
   return document.getElementById("task[name]").value;
 }
 
-export { showTaskForm, getTaskName };
+export { showTaskFormBtn, getTaskName };
