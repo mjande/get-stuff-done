@@ -1,9 +1,7 @@
 export function getProjectFromStorage(id) {
   const project = JSON.parse(localStorage.getItem(id));
- 
-  const prototype = Project();
 
-  return Object.assign({}, prototype, project);
+  return Project(id, project.name, project.tasks);
 };
 
 
@@ -19,34 +17,32 @@ export function index() {
 }
 
 export function create(name) {
-  const project = Project(name);
+  const id = Object.keys(localStorage).length;
+  const project = Project(id, name);
   
   project.save();
 
   return project;
 };
 
-const Project = (name) => {
-  const id = Object.keys(localStorage).length;
-  
-  let tasks = [];
+const Project = (id, name, tasks) => {  
+  tasks ??= [];
+
   function addTask(task) {
     tasks.push(task);
     console.log(`Adding "${task.title}" to project (ID: ${id})`);
-
-    save();
   };
 
   function save() {
     console.log(`Saving project (ID: ${id}) in local storage...`);
-    localStorage.setItem(id, JSON.stringify({ id, name, tasks}));
+    localStorage.setItem(id, JSON.stringify(this));
   }
 
   return { 
     id, 
     name, 
     addTask, 
-    tasks, 
+    tasks: tasks, 
     save
   };
 }

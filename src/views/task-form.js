@@ -1,6 +1,6 @@
 import { createTask } from "../controllers/tasks-controller";
 
-function showTaskForm() {
+function showTaskForm(project) {
   const newTaskDiv = document.querySelector(".new-task");
   newTaskDiv.innerHTML = "";
 
@@ -19,7 +19,9 @@ function showTaskForm() {
 
   const submitBtn = document.createElement("button");
   submitBtn.textContent = "Add Task";
-  submitBtn.addEventListener("click", createTask);
+  submitBtn.addEventListener("click", () => {
+    createTask(project);
+  });
   form.appendChild(submitBtn);
 };
 
