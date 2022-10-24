@@ -12,6 +12,7 @@ export function updateSidebar() {
   projects.forEach((project) => {
     sidebar.appendChild(projectLink(project));
   });
+
+  // return 
 };
 
-// updateSidebar();

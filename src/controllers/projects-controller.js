@@ -10,6 +10,6 @@ export function createProject() {
   project.create(name);
 
   // Update main display;
-  // updateSidebar();
+  updateSidebar();
   toggleProjectForm();
 }

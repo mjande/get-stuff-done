@@ -10,12 +10,10 @@ export function getProjectFromStorage(id) {
 export function index() {
   let values = [];
   let keys = Object.keys(localStorage);
-  let project = getProjectFromStorage(keys[0]);
-  console.log(project);
 
-  // for (let i = 0; i < keys.length - 1; i++) {
-    // values.push(getProjectFromStorage(keys[i]));
-  // }
+  for (let i = 0; i < keys.length; i++) {
+    values.push(getProjectFromStorage(i));
+  };
 
   return values;
 }

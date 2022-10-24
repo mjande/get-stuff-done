@@ -1,4 +1,4 @@
-@use './variables' as *;
+@use '../variables' as *;
 
 aside {
   box-sizing: border-box;
@@ -16,4 +16,10 @@ aside {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
