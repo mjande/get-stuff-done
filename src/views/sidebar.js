@@ -1,4 +1,5 @@
 import { index } from '../models/project';
+import { showProject } from './content';
 
 const sidebar = document.querySelector(".projects");
 
@@ -16,6 +17,9 @@ function addToSidebar(project) {
   const link = document.createElement("a");
   link.href = "#";
   link.textContent = project.name;
+  link.addEventListener("click", () => {
+    showProject(project);
+  });
 
   sidebar.appendChild(link);
 };

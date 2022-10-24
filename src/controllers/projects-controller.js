@@ -13,4 +13,4 @@ export function createProject() {
   showProject(newProject);
   addToSidebar(newProject);
   toggleProjectForm();
-}
+};
