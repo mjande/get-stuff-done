@@ -1,16 +1,25 @@
 import { index } from '../models/project';
 
-export function updateSidebar() {
+const sidebar = document.querySelector(".projects");
+
+function updateSidebar() {
   const projects = index();
-  const sidebar = document.querySelector(".projects");
 
   projects.forEach((project) => {
-    const link = document.createElement("a");
-    link.href = "#";
-    link.textContent = project.name;
-
-    sidebar.appendChild(link);
+    addToSidebar(project);
   });
 };
 
+function addToSidebar(project) {
+  console.log(`Adding project (ID: ${project.id}) to sidebar...`)
+  
+  const link = document.createElement("a");
+  link.href = "#";
+  link.textContent = project.name;
+
+  sidebar.appendChild(link);
+};
+
 updateSidebar();
+
+export { updateSidebar, addToSidebar }

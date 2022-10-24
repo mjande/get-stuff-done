@@ -23,7 +23,8 @@ export function create(name) {
   
   localStorage.setItem(project.id, JSON.stringify(project));
 
-  console.log(`Creating project called ${name} in local storage...`);
+  console.log(`Creating project (ID: ${project.id}) in local storage...`);
+  return project;
 };
 
 const Project = (name) => {
