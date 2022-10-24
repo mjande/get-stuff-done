@@ -14,19 +14,20 @@
   </nav>
   <div class="main-container">
     <aside>
+      <div class="projects-header">
+        <h2>Projects</h2>
+        <button type="button" class="new-project-btn" onclick="toggleProjectForm()">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
       <div class="projects">
-        <div class="projects-header">
-          <h2>Projects</h2>
-          <button type="button" class="new-project-btn" onclick="projectForm.display()">
-            <i class="fa-solid fa-plus"></i>
-          </button>
-        </div>
       </div>
     </aside>
     <main>
+
     </main>
 
-    <div class="project-form-modal" id="project-form-modal">
+    <div class="project-form-modal closed" id="project-form-modal">
       <h1>New Project</h1>
 
       <form>
@@ -35,7 +36,7 @@
           <input type="text" id="project[name]">
         </div>
 
-        <button type="button" id="create-project-button">Create Project</button>
+        <button type="button" id="create-project-button" onclick="createProject()">Create Project</button>
       </form>
 
     </div>

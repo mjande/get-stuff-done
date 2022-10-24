@@ -1,4 +1,6 @@
 import './styles/index.scss';
-import * as projectForm from './components/project/form';
+import { toggleProjectForm } from './views/project-form';
+import { createProject } from './controllers/projects-controller';
 
-window.projectForm = projectForm;
+window.toggleProjectForm = toggleProjectForm;
+window.createProject = createProject;
