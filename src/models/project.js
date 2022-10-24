@@ -21,9 +21,8 @@ export function index() {
 export function create(name) {
   const project = Project(name);
   
-  localStorage.setItem(project.id, JSON.stringify(project));
+  project.save();
 
-  console.log(`Creating project (ID: ${project.id}) in local storage...`);
   return project;
 };
 
@@ -33,13 +32,22 @@ const Project = (name) => {
   let tasks = [];
   function addTask(task) {
     tasks.push(task);
+    console.log(`Adding "${task.title}" to project (ID: ${id})`);
+
+    save();
   };
+
+  function save() {
+    console.log(`Saving project (ID: ${id}) in local storage...`);
+    localStorage.setItem(id, JSON.stringify({ id, name, tasks}));
+  }
 
   return { 
     id, 
     name, 
     addTask, 
-    tasks
+    tasks, 
+    save
   };
 }
 

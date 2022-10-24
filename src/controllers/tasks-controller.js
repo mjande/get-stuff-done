@@ -12,4 +12,5 @@ export function createTask() {
   
   // Add that task to the relevant project
   project.addTask(newTask);
+  console.log(project.tasks);
 }

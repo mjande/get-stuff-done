@@ -12,6 +12,8 @@ function showProject(project) {
   header.textContent = project.name;
   container.appendChild(header);
 
+  
+
   // Create "Add Task" button
   const newTaskDiv = document.createElement("div");
   newTaskDiv.className = "new-task";
