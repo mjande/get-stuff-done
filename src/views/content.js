@@ -1,9 +1,11 @@
 import { showTaskForm } from '../views/task-form';
 
 const container = document.querySelector('.content');
+let currentProject;
 
-export function showProject(project) {  
+function showProject(project) {  
   container.innerHTML = "";
+  currentProject = project;
   
   // Create header
   const header = document.createElement("h2");
@@ -20,6 +22,11 @@ export function showProject(project) {
   newTaskDiv.appendChild(taskBtn);
   container.appendChild(newTaskDiv);
 
-
   console.log(`Showing project (ID: ${project.id}) on home page`);
 };
+
+function getCurrentProject() {
+  return currentProject;
+}
+
+export { showProject, getCurrentProject };

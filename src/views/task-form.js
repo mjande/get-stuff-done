@@ -1,4 +1,6 @@
-export function showTaskForm() {
+import { createTask } from "../controllers/tasks-controller";
+
+function showTaskForm() {
   const newTaskDiv = document.querySelector(".new-task");
   newTaskDiv.innerHTML = "";
 
@@ -17,5 +19,12 @@ export function showTaskForm() {
 
   const submitBtn = document.createElement("button");
   submitBtn.textContent = "Add Task";
+  submitBtn.addEventListener("click", createTask);
   form.appendChild(submitBtn);
+};
+
+function getTaskName() {
+  return document.getElementById("task[name]").value;
 }
+
+export { showTaskForm, getTaskName };

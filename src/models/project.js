@@ -31,11 +31,16 @@ const Project = (name) => {
   const id = Object.keys(localStorage).length;
   
   let tasks = [];
-  const addTask = (task) => {
+  function addTask(task) {
     tasks.push(task);
   };
 
-  return { id, name, tasks, addTask };
+  return { 
+    id, 
+    name, 
+    addTask, 
+    tasks
+  };
 }
 
 
