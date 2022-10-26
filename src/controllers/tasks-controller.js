@@ -20,6 +20,10 @@ function createTask(project) {
   appendTask(newTask);
 };
 
+function updateTask(task) {
+
+}
+
 function destroyTask(task) {
   // Remove reference to task in local storage
   const project = getProjectFromStorage(task.projectID);
@@ -31,4 +35,4 @@ function destroyTask(task) {
   removeTask(task);
 }
 
-export { createTask, destroyTask }
+export { createTask, updateTask, destroyTask }

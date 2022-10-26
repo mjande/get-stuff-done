@@ -16,3 +16,13 @@
   background-color: $celadon-blue;
   padding: 1rem;
 }
+
+.task {
+  display: flex;
+}
+
+.task-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}

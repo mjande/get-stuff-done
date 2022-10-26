@@ -1,4 +1,4 @@
-import { destroyTask } from "../controllers/tasks-controller";
+import { updateTask, destroyTask } from "../controllers/tasks-controller";
 
 const container = document.querySelector('.content');
 
@@ -20,6 +20,7 @@ function appendTask(task) {
   const tasksContainer = document.querySelector(".tasks");
   
   const taskDiv = document.createElement("div");
+  taskDiv.className = "task";
   taskDiv.dataset.taskId = task.id;
     
   const checkbox = document.createElement("input");
@@ -32,16 +33,22 @@ function appendTask(task) {
   label.textContent= task.name;
   taskDiv.appendChild(label);
 
+  const taskControls = document.createElement("div");
+  taskControls.className = "task-controls";
   const editIcon = document.createElement("i");
   editIcon.className = "fa-solid fa-pen";
-  taskDiv.appendChild(editIcon);
+  editIcon.addEventListener("click", () => {
+    showTaskForm(task);
+  })
+  taskControls.appendChild(editIcon);
 
   const deleteIcon = document.createElement("i");
   deleteIcon.className = "fa-solid fa-circle-xmark"
   deleteIcon.addEventListener("click", () => {
     destroyTask(task);
   })
-  taskDiv.appendChild(deleteIcon);
+  taskControls.appendChild(deleteIcon);
+  taskDiv.appendChild(taskControls);
 
   tasksContainer.appendChild(taskDiv);
 };
