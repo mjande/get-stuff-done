@@ -32,8 +32,12 @@ function appendTask(task) {
   label.textContent= task.name;
   taskDiv.appendChild(label);
 
+  const editIcon = document.createElement("i");
+  editIcon.className = "fa-solid fa-pen";
+  taskDiv.appendChild(editIcon);
+
   const deleteIcon = document.createElement("i");
-  deleteIcon.className = "fa-solid fa-x"
+  deleteIcon.className = "fa-solid fa-circle-xmark"
   deleteIcon.addEventListener("click", () => {
     destroyTask(task);
   })
