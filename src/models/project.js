@@ -24,14 +24,22 @@ export function create(name) {
 
   return project;
 };
-
+ 
 const Project = (id, name, tasks) => {  
   tasks ??= [];
 
   function addTask(task) {
     tasks.push(task);
-    console.log(`Adding "${task.title}" to project (ID: ${id})`);
+    console.log(`Adding "${task.name}" to project (ID: ${id})`);
   };
+
+  function removeTask(task) {
+    const taskIndex = tasks.findIndex((element) => {
+      task.name == element.name;
+    });
+
+    tasks.splice(taskIndex);
+  }
 
   function save() {
     console.log(`Saving project (ID: ${id}) in local storage...`);
@@ -42,6 +50,7 @@ const Project = (id, name, tasks) => {
     id, 
     name, 
     addTask, 
+    removeTask,
     tasks: tasks, 
     save
   };

@@ -1,5 +1,5 @@
 import { index } from '../models/project';
-import { showProject } from './content';
+import { showProject } from './project';
 
 const sidebar = document.querySelector(".projects");
 

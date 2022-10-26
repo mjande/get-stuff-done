@@ -1,9 +1,15 @@
-export function create(title, projectID) {  
-  return Task(title, projectID);
+export function create(name, project) {  
+  // IDs are local to each project (ex: first task in a project has ID: 0)
+  const id = project.tasks.length;
+
+  const task = Task(id, name, project.id);
+  console.log(task);
+  
+  return task;
 };
 
-function Task(title, projectID) {
-  return { title, projectID };
-}
+function Task(id, name, projectID) {
+  return { id, name, projectID };
+};
 
 

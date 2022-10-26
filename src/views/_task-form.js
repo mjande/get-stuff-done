@@ -24,6 +24,11 @@ function showTaskForm(project) {
   controlDiv.className = "control";
   form.appendChild(controlDiv);
 
+  const label = document.createElement("label");
+  label.textContent = "New Task";
+  label.for = "task[name]";
+  controlDiv.appendChild(label);
+
   const input = document.createElement("input");
   input.type = "text";
   input.id = "task[name]";

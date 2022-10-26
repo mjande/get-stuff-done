@@ -1,27 +1,6 @@
-import { showTaskFormBtn } from '../views/task-form';
+import { destroyTask } from "../controllers/tasks-controller";
 
 const container = document.querySelector('.content');
-
-function showProject(project) {  
-  container.innerHTML = "";
-  
-  // Create header
-  const header = document.createElement("h2");
-  header.textContent = project.name;
-  container.appendChild(header);
-
-  // Add task list
-  addTaskList(project);
-
-  // Create "Add Task" button
-  const newTaskDiv = document.createElement("div");
-  newTaskDiv.className = "new-task";
-  container.appendChild(newTaskDiv);
-
-  showTaskFormBtn(project);
-
-  console.log(`Showing project (ID: ${project.id}) on home page`);
-};
 
 function addTaskList(project) {
   const tasksHeader = document.createElement("h3");
@@ -41,18 +20,32 @@ function appendTask(task) {
   const tasksContainer = document.querySelector(".tasks");
   
   const taskDiv = document.createElement("div");
+  taskDiv.dataset.taskId = task.id;
     
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
-  checkbox.id = task.title
+  checkbox.id = task.name
   taskDiv.appendChild(checkbox);
 
   const label = document.createElement("label");
-  label.for = task.title;
-  label.textContent= task.title;
+  label.for = task.name;
+  label.textContent= task.name;
   taskDiv.appendChild(label);
+
+  const deleteIcon = document.createElement("i");
+  deleteIcon.className = "fa-solid fa-x"
+  deleteIcon.addEventListener("click", () => {
+    destroyTask(task);
+  })
+  taskDiv.appendChild(deleteIcon);
 
   tasksContainer.appendChild(taskDiv);
 };
 
-export { showProject, appendTask };
+function removeTask(task) {
+  const taskDiv = document.querySelector(`[data-task-id="${task.id}"]`)
+
+  taskDiv.remove();
+}
+
+export { addTaskList, appendTask, removeTask }

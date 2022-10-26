@@ -1,0 +1,18 @@
+@use '../variables' as *;
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.new-task {
+  margin: 0.5rem 0;
+}
+
+.new-task form {
+  border-radius: 1rem;
+  box-shadow: 2px 2px 10px grey;
+  background-color: $celadon-blue;
+  padding: 1rem;
+}
