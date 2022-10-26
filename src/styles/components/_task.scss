@@ -10,7 +10,9 @@
   margin: 0.5rem 0;
 }
 
-.new-task form {
+.new-task form, 
+.task form {
+  width: 300px;
   border-radius: 1rem;
   box-shadow: 2px 2px 10px grey;
   background-color: $celadon-blue;

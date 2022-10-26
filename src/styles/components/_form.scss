@@ -20,31 +20,3 @@ form {
 label {
   font-weight: bold;
 }
-
-form button {
-  align-self: end;
-}
-
-form button {
-  width: fit-content;
-  padding: 0.5rem;
-  white-space: nowrap;
-  opacity: 1;
-  font-size: 0.75rem;
-  background-color: powderblue;
-  border-radius: 1rem;
-  border: solid;
-  position: relative;
-  transition: transform 0.5s;
-
-  &:hover {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-
-  &:active {
-    background-color: $celadon-blue;
-    opacity: 1;
-    top: 0.1rem;
-  }
-}

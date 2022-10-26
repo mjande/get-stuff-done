@@ -13,12 +13,8 @@ function showTaskFormBtn(project) {
   newTaskDiv.appendChild(taskBtn);
 };
 
-function showTaskForm(project) {
-  const newTaskDiv = document.querySelector(".new-task");
-  newTaskDiv.innerHTML = "";
-
+function showTaskForm(project, task) {
   const form = document.createElement("form");
-  newTaskDiv.appendChild(form);
 
   const controlDiv = document.createElement("div");
   controlDiv.className = "control";
@@ -36,16 +32,37 @@ function showTaskForm(project) {
   controlDiv.appendChild(input);
 
   const submitBtn = document.createElement("button");
-  submitBtn.textContent = "Add Task";
   submitBtn.type = "button";
-  submitBtn.addEventListener("click", () => {
-    createTask(project);
-  });
-  form.appendChild(submitBtn);
+  
+  if (task) {
+    input.value = task.name;
+    
+    submitBtn.textContent = "Update Form";
+    // submitBtn.addEventListener("click", () => {
+      // updateTask(task);
+    // })
+    form.appendChild(submitBtn);
+
+    const taskDiv = document.querySelector(`[data-task-id="${task.id}"]`);
+    taskDiv.innerHTML = "";
+    taskDiv.appendChild(form);
+  } else {
+    submitBtn.textContent = "Add Task";
+    submitBtn.addEventListener("click", () => {
+      createTask(project);
+    });
+    form.appendChild(submitBtn);
+
+    const newTaskDiv = document.querySelector(".new-task");
+    newTaskDiv.innerHTML = "";
+    newTaskDiv.appendChild(form);
+  }
+
+  
 };
 
 function getTaskName() {
   return document.getElementById("task[name]").value;
 }
 
-export { showTaskFormBtn, getTaskName };
+export { showTaskFormBtn, showTaskForm, getTaskName };

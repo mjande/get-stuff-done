@@ -1,4 +1,6 @@
 import { updateTask, destroyTask } from "../controllers/tasks-controller";
+import { getProjectFromStorage } from "../models/project";
+import { showTaskForm } from './_task-form';
 
 const container = document.querySelector('.content');
 
@@ -37,9 +39,10 @@ function appendTask(task) {
   taskControls.className = "task-controls";
   const editIcon = document.createElement("i");
   editIcon.className = "fa-solid fa-pen";
+  const project = getProjectFromStorage(task.projectID);
   editIcon.addEventListener("click", () => {
-    showTaskForm(task);
-  })
+    showTaskForm(project, task);
+  });
   taskControls.appendChild(editIcon);
 
   const deleteIcon = document.createElement("i");
