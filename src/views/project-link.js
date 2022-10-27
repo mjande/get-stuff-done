@@ -8,10 +8,10 @@ function create(project) {
   fragment.append(link);
 
   function display() {
-    document.querySelector(".project-links").append(fragment);
+    document.getElementById("project-links").append(fragment);
   }
 
-  return { display }
+  return { fragment, display }
 }
 
 export { create }
