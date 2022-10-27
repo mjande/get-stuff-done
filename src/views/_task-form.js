@@ -1,4 +1,5 @@
 import { createTask } from "../controllers/tasks-controller";
+import { updateTask } from "../controllers/tasks-controller";
 import { find as findProject } from "../models/project";
 import { find as findTask } from "../models/task"
 
@@ -43,9 +44,9 @@ function showTaskForm(event) {
     input.value = task.name;
     
     submitBtn.textContent = "Update Form";
-    // submitBtn.addEventListener("click", () => {
-      // updateTask(task);
-    // })
+    submitBtn.dataset.taskId = event.target.dataset.taskId;
+    submitBtn.addEventListener("click", updateTask);
+
     form.appendChild(submitBtn);
 
     const taskDiv = document.querySelector(`[data-task-id="${task.id}"]`);

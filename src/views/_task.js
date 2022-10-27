@@ -25,7 +25,6 @@ function appendTask(task) {
   taskDiv.className = "task";
   taskDiv.dataset.taskId = task.id;
   taskDiv.dataset.projectId = task.projectId;
-  console.log(task);
     
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";

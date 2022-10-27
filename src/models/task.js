@@ -8,12 +8,18 @@ function create(name, project) {
 };
 
 function Task(id, name, projectId) {
-  return { id, name, projectId };
+  function update(newName) {
+    name = newName;
+  };
+  
+  return { id, name, projectId, update };
 };
 
 function find(id, projectId) {
   const project = findProject(projectId);
-  return project.tasks[id];
+  const task = project.tasks[id];
+
+  return Task(task.id, task.name, task.projectId);
 };
 
 export { find, create };

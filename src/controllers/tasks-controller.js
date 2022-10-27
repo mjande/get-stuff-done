@@ -1,7 +1,8 @@
-import * as task from '../models/task';
+import * as Task from '../models/task';
 import { getTaskName, showTaskFormBtn } from "../views/_task-form";
 import { appendTask } from '../views/_task';
 import { find as findProject } from '../models/project';
+import { find as findTask } from "../models/task";
 import { removeTask } from '../views/_task';
 
 function createTask(event) {
@@ -11,7 +12,7 @@ function createTask(event) {
   const name = getTaskName();
 
   // Create new task in local storage
-  const newTask = task.create(name, project);
+  const newTask = Task.create(name, project);
   console.log(newTask);
   
   // Add that task to the relevant project
@@ -23,8 +24,16 @@ function createTask(event) {
   appendTask(newTask);
 };
 
-function updateTask(task) {
+function updateTask(event) {
+  const id = event.target.dataset.taskId;
+  const projectId = event.target.dataset.projectId;
 
+  let task = findTask(id, projectId);
+  const name = getTaskName();
+
+  task = task.update(name);
+
+  
 }
 
 function destroyTask(task) {
