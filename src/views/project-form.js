@@ -3,17 +3,15 @@ function display() {
   const form = document.createElement("form");
   form.className = "project-form";
 
-  createOverlay();
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+
   createHeader();
   createNameField();
   createSubmitButton();
 
   document.querySelector("body").append(form);
-
-  function createOverlay() {
-    const overlay = document.createElement("div");
-    overlay.classname = "overlay";
-  };
+  document.querySelector("body").append(overlay);
 
   function createHeader() {
     const header = document.createElement("h1");
@@ -43,6 +41,7 @@ function display() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "button";
+    button.textContent = "Create Project";
     button.onclick = "";
     form.appendChild(button);
   }
