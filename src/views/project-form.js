@@ -1,9 +1,9 @@
 import * as ProjectsController from "../controllers/projects-controller";
 
 function display() {
+  const fragment = new DocumentFragment;
   const form = document.createElement("form");
   form.className = "project-form";
-
   const overlay = document.createElement("div");
   overlay.className = "overlay";
 
@@ -11,11 +11,12 @@ function display() {
   createNameField();
   createSubmitButton();
 
-  document.querySelector("body").append(form);
-  document.querySelector("body").append(overlay);
+  fragment.append(form);
+  fragment.append(overlay);
+  document.querySelector("body").append(fragment);
 
 
-  
+
   function createHeader() {
     const header = document.createElement("h1");
     header.textContent = "New Project";
