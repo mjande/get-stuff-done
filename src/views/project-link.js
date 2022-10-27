@@ -8,7 +8,7 @@ function create(project) {
   fragment.append(link);
 
   function display() {
-    document.getElementById("project-links").append(fragment);
+    document.querySelector(".project-links").append(fragment);
   }
 
   return { fragment, display }

@@ -12,6 +12,6 @@ Project.all().forEach((project) => {
   const projectLinkElement = ProjectLinkElement.create(project).fragment;
   projectLinksFragment.append(projectLinkElement);
 });
-document.getElementById("project-links").append(projectLinksFragment);
+document.querySelector(".project-links").append(projectLinksFragment);
 
 
