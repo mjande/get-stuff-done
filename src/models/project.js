@@ -1,12 +1,17 @@
-function create({ id, name }) {
-  return Project({ name });
-};
+function find(id) {
+  const projects = all();
+
+  let project = projects.find((project) => project.id == id);
+
+  // Restore project methods to loaded project
+  return create(project);
+}
 
 function all() {
   return JSON.parse(localStorage.getItem("projects")) || [];
 }
 
-function Project({ id, name }) {
+function create({ id, name }) {
   if (!id) {
     const projects = all();
     id = projects.length;
@@ -22,4 +27,4 @@ function Project({ id, name }) {
   return { id, name, save };
 };
 
-export { create, all }
+export { create, all, find }

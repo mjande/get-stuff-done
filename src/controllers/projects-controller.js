@@ -16,4 +16,12 @@ function create() {
   ProjectFormElement.hide();
 };
 
-export { create };
+function show(event) {
+  const id = event.target.dataset.id;
+
+  const project = Project.find(id);
+
+  ProjectElement.create(project).display();
+}
+
+export { create, show };
