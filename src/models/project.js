@@ -1,22 +1,22 @@
-export function getProjectFromStorage(id) {
+function find(id) {
   const project = JSON.parse(localStorage.getItem(id));
 
   return Project(id, project.name, project.tasks);
 };
 
 
-export function index() {
+function index() {
   let values = [];
   let keys = Object.keys(localStorage);
 
   for (let i = 0; i < keys.length; i++) {
-    values.push(getProjectFromStorage(i));
+    values.push(find(i));
   };
 
   return values;
 }
 
-export function create(name) {
+function create(name) {
   const id = Object.keys(localStorage).length;
   const project = Project(id, name);
   
@@ -54,7 +54,9 @@ const Project = (id, name, tasks) => {
     tasks: tasks, 
     save
   };
-}
+};
+
+export { find, index, create }
 
 
 

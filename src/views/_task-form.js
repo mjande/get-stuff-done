@@ -1,4 +1,6 @@
 import { createTask } from "../controllers/tasks-controller";
+import { find as findProject } from "../models/project";
+import { find as findTask } from "../models/task"
 
 function showTaskFormBtn(project) {
   const newTaskDiv = document.querySelector(".new-task");
@@ -6,14 +8,13 @@ function showTaskFormBtn(project) {
 
   const taskBtn = document.createElement("button");
   taskBtn.type = "button";
-  taskBtn.textContent = "New Task";
-  taskBtn.addEventListener("click", () => {
-  showTaskForm(project); 
-  });
+  taskBtn.textContent = "Add Task";
+  taskBtn.dataset.projectId = project.id
+  taskBtn.addEventListener("click", showTaskForm);
   newTaskDiv.appendChild(taskBtn);
 };
 
-function showTaskForm(project, task) {
+function showTaskForm(event) {
   const form = document.createElement("form");
 
   const controlDiv = document.createElement("div");
@@ -33,8 +34,12 @@ function showTaskForm(project, task) {
 
   const submitBtn = document.createElement("button");
   submitBtn.type = "button";
+  submitBtn.dataset.projectId = event.target.dataset.projectId;
   
-  if (task) {
+  if (event.target.hasAttribute('data-task-id')) {
+    const taskId = event.target.dataset.taskId;
+    const projectId = event.target.dataset.projectId;
+    const task = findTask(taskId, projectId);
     input.value = task.name;
     
     submitBtn.textContent = "Update Form";
@@ -48,9 +53,7 @@ function showTaskForm(project, task) {
     taskDiv.appendChild(form);
   } else {
     submitBtn.textContent = "Add Task";
-    submitBtn.addEventListener("click", () => {
-      createTask(project);
-    });
+    submitBtn.addEventListener("click", createTask);
     form.appendChild(submitBtn);
 
     const newTaskDiv = document.querySelector(".new-task");

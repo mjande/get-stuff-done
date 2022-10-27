@@ -1,5 +1,5 @@
 import { updateTask, destroyTask } from "../controllers/tasks-controller";
-import { getProjectFromStorage } from "../models/project";
+import { find as findProject } from "../models/project";
 import { showTaskForm } from './_task-form';
 
 const container = document.querySelector('.content');
@@ -24,6 +24,8 @@ function appendTask(task) {
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
   taskDiv.dataset.taskId = task.id;
+  taskDiv.dataset.projectId = task.projectId;
+  console.log(task);
     
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
@@ -39,10 +41,9 @@ function appendTask(task) {
   taskControls.className = "task-controls";
   const editIcon = document.createElement("i");
   editIcon.className = "fa-solid fa-pen";
-  const project = getProjectFromStorage(task.projectID);
-  editIcon.addEventListener("click", () => {
-    showTaskForm(project, task);
-  });
+  editIcon.dataset.taskId = task.id;
+  editIcon.dataset.projectId = task.projectId;
+  editIcon.addEventListener("click", showTaskForm);
   taskControls.appendChild(editIcon);
 
   const deleteIcon = document.createElement("i");

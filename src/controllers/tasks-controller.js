@@ -1,15 +1,18 @@
 import * as task from '../models/task';
 import { getTaskName, showTaskFormBtn } from "../views/_task-form";
 import { appendTask } from '../views/_task';
-import { getProjectFromStorage } from '../models/project';
+import { find as findProject } from '../models/project';
 import { removeTask } from '../views/_task';
 
-function createTask(project) {
+function createTask(event) {
+  const project = findProject(event.target.dataset.projectId);
+ 
   // Collect inputs for new task
   const name = getTaskName();
 
   // Create new task in local storage
   const newTask = task.create(name, project);
+  console.log(newTask);
   
   // Add that task to the relevant project
   project.addTask(newTask);
@@ -26,7 +29,7 @@ function updateTask(task) {
 
 function destroyTask(task) {
   // Remove reference to task in local storage
-  const project = getProjectFromStorage(task.projectID);
+  const project = findProject(task.projectID);
   project.removeTask(task);
   project.save();
   console.log("Deleting task from local storage...")
