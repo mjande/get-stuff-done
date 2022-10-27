@@ -51,10 +51,15 @@ function display() {
   }
 };
 
+function hide() {
+  document.querySelector(".project-form").remove();
+  document.querySelector(".overlay").remove();
+}
+
 function parameters() {
   const name = document.getElementById("project[name]").value;
 
   return { name }
 }
 
-export { display, parameters }
+export { display, hide, parameters }

@@ -1,18 +1,17 @@
-import * as ProjectForm from "../views/project-form";
+import * as ProjectFormElement from "../views/project-form";
 import * as Project from "../models/project";
 
 function create() {
-  const parameters = ProjectForm.parameters();
+  const parameters = ProjectFormElement.parameters();
 
   const project = Project.create({ name: parameters.name });
   project.save();
-  console.log(Project.all());
 
-  // ProjectElement.create(project).display();
+  // ProjectElement.display(project);
 
   // ProjectLink.create(project).display();
 
-  // ProjectForm.hide();
+  ProjectFormElement.hide();
 };
 
 export { create };
