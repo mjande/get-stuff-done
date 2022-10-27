@@ -1,5 +1,6 @@
 import * as ProjectFormElement from "../views/project-form";
 import * as Project from "../models/project";
+import * as ProjectElement from "../views/project";
 
 function create() {
   const parameters = ProjectFormElement.parameters();
@@ -7,7 +8,7 @@ function create() {
   const project = Project.create({ name: parameters.name });
   project.save();
 
-  // ProjectElement.display(project);
+  ProjectElement.create(project).display();
 
   // ProjectLink.create(project).display();
 
