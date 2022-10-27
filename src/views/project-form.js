@@ -1,5 +1,6 @@
-function display() {
+import * as ProjectsController from "../controllers/projects-controller";
 
+function display() {
   const form = document.createElement("form");
   form.className = "project-form";
 
@@ -13,6 +14,8 @@ function display() {
   document.querySelector("body").append(form);
   document.querySelector("body").append(overlay);
 
+
+  
   function createHeader() {
     const header = document.createElement("h1");
     header.textContent = "New Project";
@@ -42,9 +45,15 @@ function display() {
     button.type = "button";
     button.className = "button";
     button.textContent = "Create Project";
-    button.onclick = "";
+    button.onclick = ProjectsController.create;
     form.appendChild(button);
   }
 };
 
-export { display }
+function parameters() {
+  const name = document.getElementById("project[name]").value;
+
+  return { name }
+}
+
+export { display, parameters }
