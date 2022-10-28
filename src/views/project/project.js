@@ -7,13 +7,18 @@ function create(project) {
   projectElement.className = "project";
   const headerContainer = document.createElement("div");
   headerContainer.className = "level";
+  const tasksContainer = document.createElement("div");
+  tasksContainer.className = "tasks";
 
   // Create elements
   createHeader();
   createDeleteButton();
+  createTasksHeader();
+  createAddTaskButton();
 
   // Attach layout to fragment
   projectElement.append(headerContainer);
+  projectElement.append(tasksContainer);
   fragment.append(projectElement);
 
   // Element functions
@@ -29,6 +34,20 @@ function create(project) {
     button.dataset.id = project.id;
     button.onclick = DeleteProjectFormElement.display;
     headerContainer.append(button);
+  };
+
+  function createTasksHeader() {
+    const header = document.createElement("h3");
+    header.textContent = "Tasks";
+    tasksContainer.append(header);
+  }
+
+  function createAddTaskButton() {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Add Task";
+    // button.onclick = TaskForm.display;
+    tasksContainer.append(button);
   }
 
   // Attach fragment to container on page
