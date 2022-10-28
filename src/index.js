@@ -13,5 +13,3 @@ Project.all().forEach((project) => {
   projectLinksFragment.append(projectLinkElement);
 });
 document.querySelector(".project-links").append(projectLinksFragment);
-
-

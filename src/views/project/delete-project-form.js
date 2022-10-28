@@ -1,4 +1,5 @@
 import * as Project from "../../models/project";
+import * as ProjectsController from "../../controllers/projects-controller";
 
 function display(event) {
   const project = Project.find(event.target.dataset.id)
@@ -33,11 +34,10 @@ function display(event) {
   function createBody() {
     const body = document.createElement("div");
     const projectName = document.createElement("b");
-    body.textContent = "Are you sure you want to delete ";
+    projectName.textContent = project.name;
+    body.append("Are you sure you want to delete ");
     body.append(projectName);
     body.append("?");
-    
-    projectName.textContent = project.name;
 
     form.append(body);
   }
@@ -54,7 +54,8 @@ function display(event) {
     const button = document.createElement("button");
     button.type = "button";
     button.textContent = "Delete";
-    // Event listener
+    button.dataset.id = project.id;
+    button.onclick = ProjectsController.destroy;
     buttonsContainer.append(button);
   }
 }
