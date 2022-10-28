@@ -1,22 +1,24 @@
-import * as ProjectsController from "../controllers/projects-controller";
+import * as ProjectsController from "../../controllers/projects-controller";
 
 function display() {
+  // Create layout
   const fragment = new DocumentFragment;
   const form = document.createElement("form");
-  form.className = "project-form";
+  form.className = "project-form modal";
   const overlay = document.createElement("div");
   overlay.className = "overlay";
 
+  // Create elements
   createHeader();
   createNameField();
   createSubmitButton();
 
+  // Attach elements to fragment and attach fragment to page
   fragment.append(form);
   fragment.append(overlay);
   document.querySelector("body").append(fragment);
 
-
-
+  // Element functions
   function createHeader() {
     const header = document.createElement("h1");
     header.textContent = "New Project";

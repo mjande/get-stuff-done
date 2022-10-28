@@ -12,7 +12,7 @@ function all() {
 }
 
 function create({ id, name }) {
-  if (!id) {
+  if (id == undefined) {
     const projects = all();
     id = projects.length;
   } 

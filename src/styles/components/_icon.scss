@@ -1,0 +1,11 @@
+.icon {
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:active {
+    margin-top: 0.5rem;
+  }
+}

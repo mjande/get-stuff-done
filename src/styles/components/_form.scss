@@ -17,15 +17,18 @@ label {
 }
 
 .project-form {
-  display: flex;
-  flex-direction: column;
+  width: 400px;
+}
+
+.delete-project-form {
+  width: 300px;
+}
+
+.modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
-  height: 300px;
-  max-height: 100%;
 
   background-color: white;
   opacity: 1;
