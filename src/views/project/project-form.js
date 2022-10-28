@@ -5,15 +5,19 @@ function display() {
   const fragment = new DocumentFragment;
   const form = document.createElement("form");
   form.className = "project-form modal";
+  const buttonsContainer = document.createElement("div");
+  buttonsContainer.className = "buttons-container";
   const overlay = document.createElement("div");
   overlay.className = "overlay";
 
   // Create elements
   createHeader();
   createNameField();
-  createSubmitButton();
+  createCancelButton();
+  createCreateButton();
 
   // Attach elements to fragment and attach fragment to page
+  form.append(buttonsContainer);
   fragment.append(form);
   fragment.append(overlay);
   document.querySelector("body").append(fragment);
@@ -43,13 +47,21 @@ function display() {
     form.appendChild(control);
   };
 
-  function createSubmitButton() {
+  function createCancelButton() {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Cancel";
+    button.onclick = hide;
+    buttonsContainer.append(button);
+  }
+
+  function createCreateButton() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "button";
     button.textContent = "Create Project";
     button.onclick = ProjectsController.create;
-    form.appendChild(button);
+    buttonsContainer.appendChild(button);
   }
 };
 
