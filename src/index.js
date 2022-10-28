@@ -8,7 +8,7 @@ button.onclick = ProjectFormElement.display;
 
 const projectLinksFragment = new DocumentFragment;
 Project.all().forEach((project) => {
-  const projectLinkElement = ProjectLinkElement.create(project).fragment;
+  const projectLinkElement = ProjectLinkElement.display(project);
   projectLinksFragment.append(projectLinkElement);
 });
 document.querySelector(".project-links").append(projectLinksFragment);

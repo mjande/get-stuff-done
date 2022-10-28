@@ -1,6 +1,7 @@
 import * as DeleteProjectFormElement from "./delete-project-form";
+import * as TaskForm from "../task/task-form";
 
-function create(project) {
+function display(project) {
   // Create layout
   const fragment = new DocumentFragment;
   const projectElement = document.createElement("div");
@@ -9,6 +10,8 @@ function create(project) {
   headerContainer.className = "level";
   const tasksContainer = document.createElement("div");
   tasksContainer.className = "tasks";
+  const newTaskContainer = document.createElement("div");
+  newTaskContainer.className = "new-task";
 
   // Create elements
   createHeader();
@@ -19,7 +22,14 @@ function create(project) {
   // Attach layout to fragment
   projectElement.append(headerContainer);
   projectElement.append(tasksContainer);
+  projectElement.append(newTaskContainer);
   fragment.append(projectElement);
+
+  const main = document.querySelector("main");
+  if (main.firstChild) {
+    main.firstChild.remove()
+  };
+  main.append(fragment);
 
   // Element functions
   function createHeader() {
@@ -46,20 +56,10 @@ function create(project) {
     const button = document.createElement("button");
     button.type = "button";
     button.textContent = "Add Task";
-    // button.onclick = TaskForm.display;
+    button.dataset.projectId = project.id
+    button.onclick = TaskForm.display;
     tasksContainer.append(button);
   }
-
-  // Attach fragment to container on page
-  function display() {
-    const main = document.querySelector("main");
-    if (main.firstChild) {
-      main.firstChild.remove()
-    };
-    main.append(fragment);
-  }
-
-  return { display }
 }
 
-export { create }
+export { display }

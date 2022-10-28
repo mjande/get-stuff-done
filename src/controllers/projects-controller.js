@@ -10,9 +10,9 @@ function create() {
   const project = Project.create({ name: parameters.name });
   project.save();
 
-  ProjectElement.create(project).display();
+  ProjectElement.display(project);
 
-  ProjectLinkElement.create(project).display();
+  ProjectLinkElement.display(project);
 
   ProjectFormElement.hide();
 };
@@ -22,7 +22,7 @@ function show(event) {
 
   const project = Project.find(id);
 
-  ProjectElement.create(project).display();
+  ProjectElement.display(project)
 }
 
 function destroy(event) {
