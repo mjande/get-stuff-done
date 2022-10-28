@@ -34,7 +34,9 @@ function create(project) {
   // Attach fragment to container on page
   function display() {
     const main = document.querySelector("main");
-    main.firstChild.remove();
+    if (main.firstChild) {
+      main.firstChild.remove()
+    };
     main.append(fragment);
   }
 
