@@ -65,7 +65,7 @@ function display(event) {
     button.className = "button";
     button.textContent = "Add Task";
     button.dataset.projectId = project.id;
-    // Event listener
+    button.onclick = TasksController.create();
     buttonsContainer.appendChild(button);
   }
 };
