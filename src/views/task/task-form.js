@@ -2,6 +2,7 @@ import * as Project from "../../models/project";
 
 function display(event) {
   const project = Project.find(event.target.dataset.projectId);
+  document.querySelector(".new-task").firstChild.remove();
   
   // Create layout
   const fragment = new DocumentFragment;
@@ -22,6 +23,7 @@ function display(event) {
   formContainer.append(form);
   form.append(buttonsContainer);
   fragment.append(formContainer);
+  
   document.querySelector(".new-task").append(fragment);
 
   // Element functions

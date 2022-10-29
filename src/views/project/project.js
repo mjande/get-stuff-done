@@ -58,7 +58,7 @@ function display(project) {
     button.textContent = "Add Task";
     button.dataset.projectId = project.id
     button.onclick = TaskForm.display;
-    tasksContainer.append(button);
+    newTaskContainer.append(button);
   }
 }
 
