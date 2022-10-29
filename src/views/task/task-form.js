@@ -2,7 +2,7 @@ import * as Project from "../../models/project";
 
 function display(event) {
   const project = Project.find(event.target.dataset.projectId);
-  document.querySelector(".new-task").firstChild.remove();
+  const newTaskButton = document.querySelector(".new-task").firstChild;
   
   // Create layout
   const fragment = new DocumentFragment;
@@ -23,8 +23,7 @@ function display(event) {
   formContainer.append(form);
   form.append(buttonsContainer);
   fragment.append(formContainer);
-  
-  document.querySelector(".new-task").append(fragment);
+  document.querySelector(".new-task").replaceChild(formContainer, newTaskButton);
 
   // Element functions
   function createHeader() {
@@ -55,7 +54,8 @@ function display(event) {
     const button = document.createElement("button");
     button.type = "button";
     button.textContent = "Cancel";
-    // Event listener
+    button.dataset.projectId = project.id;
+    button.onclick = hide;
     buttonsContainer.append(button);
   }
 
@@ -69,5 +69,21 @@ function display(event) {
     buttonsContainer.appendChild(button);
   }
 };
+
+function hide(event) {
+  const taskForm = document.querySelector(".new-task").firstChild
+  const project = Project.find(event.target.dataset.projectId);
+
+  createAddTaskButton();
+
+  function createAddTaskButton() {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Add Task";
+    button.dataset.projectId = project.id
+    button.onclick = display;
+    document.querySelector(".new-task").replaceChild(button, taskForm);
+  }
+}
 
 export { display }
