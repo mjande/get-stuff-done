@@ -3,8 +3,10 @@ import * as ProjectsController from "../../controllers/projects-controller";
 function display() {
   // Create layout
   const fragment = new DocumentFragment;
+  const formContainer = document.createElement("div");
+  formContainer.className = "form-container modal";
   const form = document.createElement("form");
-  form.className = "project-form modal";
+  form.className = "project-form";
   const buttonsContainer = document.createElement("div");
   buttonsContainer.className = "buttons-container";
   const overlay = document.createElement("div");
@@ -17,8 +19,9 @@ function display() {
   createSubmitButton();
 
   // Attach elements to fragment and attach fragment to page
+  formContainer.append(form);
   form.append(buttonsContainer);
-  fragment.append(form);
+  fragment.append(formContainer);
   fragment.append(overlay);
   document.querySelector("body").append(fragment);
 
@@ -26,7 +29,7 @@ function display() {
   function createHeader() {
     const header = document.createElement("h1");
     header.textContent = "New Project";
-    form.appendChild(header);
+    formContainer.appendChild(header);
   };
 
   function createNameField() {
@@ -67,7 +70,7 @@ function display() {
 };
 
 function hide() {
-  document.querySelector(".project-form").remove();
+  document.querySelector(".form-container").remove();
   document.querySelector(".overlay").remove();
 }
 

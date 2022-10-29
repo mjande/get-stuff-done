@@ -5,6 +5,8 @@ function display(event) {
   
   // Create layout
   const fragment = new DocumentFragment;
+  const formContainer = document.createElement("div");
+  formContainer.className = "form-container";
   const form = document.createElement("form");
   form.className = "task-form";
   const buttonsContainer = document.createElement("div");
@@ -17,15 +19,16 @@ function display(event) {
   createSubmitButton();
 
   // Attach elements to fragment
+  formContainer.append(form);
   form.append(buttonsContainer);
-  fragment.append(form);
+  fragment.append(formContainer);
   document.querySelector(".new-task").append(fragment);
 
   // Element functions
   function createHeader() {
     const header = document.createElement("h4");
     header.textContent = "New Task";
-    form.appendChild(header);
+    formContainer.appendChild(header);
   }
 
   function createNameField() {
