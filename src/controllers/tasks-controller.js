@@ -15,9 +15,12 @@ function create(event) {
 };
 
 function destroy(event) {
+  // Remove task from local storage
   const id = event.currentTarget.dataset.id;
-  
-  Task.destroy(id)
+  Task.destroy(id);
+
+  // Remove task from project display
+  document.querySelector(`[data-id="${id}"].task`).remove();
 }
 
 export { create, destroy }

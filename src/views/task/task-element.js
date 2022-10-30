@@ -5,6 +5,7 @@ function create(task) {
   const fragment = new DocumentFragment;
   const taskElement = document.createElement("div");
   taskElement.className = "task";
+  taskElement.dataset.id = task.id;
   const taskControl = document.createElement("div");
   taskControl.className = "task-control";
   const buttonsContainer = document.createElement("div");
