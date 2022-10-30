@@ -6,9 +6,7 @@ import * as ProjectLinkElement from "./views/project/project-link";
 const button = document.getElementById("new-project-btn");
 button.onclick = ProjectFormElement.display;
 
-const projectLinksFragment = new DocumentFragment;
 Project.all().forEach((project) => {
-  const projectLinkElement = ProjectLinkElement.display(project);
-  projectLinksFragment.append(projectLinkElement);
+  ProjectLinkElement.display(project);
 });
-document.querySelector(".project-links").append(projectLinksFragment);
+

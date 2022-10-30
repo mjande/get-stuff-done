@@ -11,6 +11,6 @@ function display(project) {
   fragment.append(link);
 
   document.querySelector(".project-links").append(fragment);
-}
+};
 
 export { display }
