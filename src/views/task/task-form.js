@@ -73,7 +73,7 @@ function display(event) {
 };
 
 function hide(event) {
-  const taskForm = document.querySelector(".new-task").firstChild
+  const taskForm = document.querySelector(".new-task").firstChild;
   const project = Project.find(event.target.dataset.projectId);
 
   createAddTaskButton();

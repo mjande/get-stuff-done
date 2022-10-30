@@ -11,7 +11,7 @@ function create(event) {
 
   TaskElement.display(task);
 
-  // TaskFormElement.hide();
+  TaskFormElement.hide(event);
 };
 
 export { create }

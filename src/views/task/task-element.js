@@ -16,7 +16,6 @@ function display(task) {
   taskElement.append(taskControl);
   taskElement.append(buttonsContainer);
   fragment.append(taskElement);
-  console.log(fragment.firstChild);
   document.querySelector(".tasks").append(fragment);
 
   // Element functions
