@@ -9,7 +9,7 @@ function create(event) {
   const task = Task.create({ text: parameters.text, projectId  });
   task.save();
 
-  TaskElement.display(task);
+  TaskElement.create(task).display();
 
   TaskFormElement.hide(event);
 };

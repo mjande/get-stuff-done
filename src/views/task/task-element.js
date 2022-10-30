@@ -1,4 +1,4 @@
-function display(task) {
+function create(task) {
   // Create layout
   const fragment = new DocumentFragment;
   const taskElement = document.createElement("div");
@@ -16,7 +16,13 @@ function display(task) {
   taskElement.append(taskControl);
   taskElement.append(buttonsContainer);
   fragment.append(taskElement);
-  document.querySelector(".tasks").append(fragment);
+
+  // Display function 
+  function display() {
+    document.querySelector(".tasks").append(fragment);
+  };
+
+  return { fragment, display }
 
   // Element functions
   function createControl() {
@@ -48,4 +54,4 @@ function display(task) {
   }
 };
 
-export { display }
+export { create }

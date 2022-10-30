@@ -1,7 +1,8 @@
 import * as DeleteProjectFormElement from "./delete-project-form";
 import * as TaskForm from "../task/task-form";
+import * as TaskElement from "../task/task-element";
 
-function display(project) {
+function create(project) {
   // Create layout
   const fragment = new DocumentFragment;
   const projectElement = document.createElement("div");
@@ -17,19 +18,25 @@ function display(project) {
   createHeader();
   createDeleteButton();
   createTasksHeader();
+  createTasks();
   createAddTaskButton();
 
   // Attach layout to fragment
-  projectElement.append(headerContainer);
+  projectElement.prepend(headerContainer);
   projectElement.append(tasksContainer);
   projectElement.append(newTaskContainer);
   fragment.append(projectElement);
 
-  const main = document.querySelector("main");
-  if (main.firstChild) {
-    main.firstChild.remove()
+  function display() {
+    const main = document.querySelector("main");
+      if (main.firstChild) {
+        main.firstChild.remove()
+      };
+    main.append(fragment);
   };
-  main.append(fragment);
+
+  return { fragment, display }
+  
 
   // Element functions
   function createHeader() {
@@ -55,7 +62,15 @@ function display(project) {
   function createTasksHeader() {
     const header = document.createElement("h3");
     header.textContent = "Tasks";
-    tasksContainer.append(header);
+    projectElement.append(header);
+  }
+
+  function createTasks() {
+    const tasks = new DocumentFragment;
+    project.tasks().forEach((task) => {
+      tasks.append(TaskElement.create(task).fragment);
+    });
+    tasksContainer.append(tasks);
   }
 
   function createAddTaskButton() {
@@ -69,4 +84,4 @@ function display(project) {
   }
 }
 
-export { display }
+export { create }
