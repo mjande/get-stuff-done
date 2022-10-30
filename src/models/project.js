@@ -13,15 +13,6 @@ function all() {
   return JSON.parse(localStorage.getItem("projects")) || [];
 }
 
-function destroy(id) {
-  let projects = all();
-
-  const index = projects.findIndex((project) => id == project.id)
-
-  projects.splice(index);
-  localStorage.setItem("projects", JSON.stringify(projects));
-}
-
 function create({ id, name }) {
   if (id == undefined) {
     const projects = all();
@@ -30,6 +21,15 @@ function create({ id, name }) {
   
   return { id, name, save, tasks };
 };
+
+function destroy(id) {
+  let projects = all();
+
+  const index = projects.findIndex((project) => id == project.id)
+
+  projects.splice(index, 1);
+  localStorage.setItem("projects", JSON.stringify(projects));
+}
 
 // Object methods (kept separate so they can be loaded to object from local storage)
 function save() {

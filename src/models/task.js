@@ -19,6 +19,14 @@ function create({ id, text, projectId }) {
   };
   
   return { id, text, projectId, save }
+};
+
+function destroy(id) {
+  let tasks = all();
+  const index = tasks.findIndex((task) => id == task.id)
+  
+  tasks.splice(index, 1);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 // Task methods (kept separate so they can be loaded to object from local storage)
@@ -29,4 +37,4 @@ function save() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
-export { find, all, create }
+export { find, all, create, destroy }

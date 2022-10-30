@@ -27,17 +27,6 @@ function create(project) {
   projectElement.append(newTaskContainer);
   fragment.append(projectElement);
 
-  function display() {
-    const main = document.querySelector("main");
-      if (main.firstChild) {
-        main.firstChild.remove()
-      };
-    main.append(fragment);
-  };
-
-  return { fragment, display }
-  
-
   // Element functions
   function createHeader() {
     const header = document.createElement("h2");
@@ -82,6 +71,17 @@ function create(project) {
     button.onclick = TaskForm.display;
     newTaskContainer.append(button);
   }
+
+  // Display function
+  function display() {
+    const main = document.querySelector("main");
+      if (main.firstChild) {
+        main.firstChild.remove()
+      };
+    main.append(fragment);
+  };
+
+  return { fragment, display }
 }
 
 export { create }

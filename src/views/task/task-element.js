@@ -1,3 +1,5 @@
+import * as TasksController from "../../controllers/tasks-controller";
+
 function create(task) {
   // Create layout
   const fragment = new DocumentFragment;
@@ -16,13 +18,6 @@ function create(task) {
   taskElement.append(taskControl);
   taskElement.append(buttonsContainer);
   fragment.append(taskElement);
-
-  // Display function 
-  function display() {
-    document.querySelector(".tasks").append(fragment);
-  };
-
-  return { fragment, display }
 
   // Element functions
   function createControl() {
@@ -47,11 +42,18 @@ function create(task) {
 
     button.dataset.projectId = task.projectId;
     button.dataset.id = task.id;
-    // Event listener
+    button.onclick = TasksController.destroy;
 
     button.append(icon);
     buttonsContainer.append(button);
   }
+
+  // Display function 
+  function display() {
+    document.querySelector(".tasks").append(fragment);
+  };
+
+  return { fragment, display }
 };
 
 export { create }

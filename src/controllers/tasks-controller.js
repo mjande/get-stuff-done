@@ -14,4 +14,10 @@ function create(event) {
   TaskFormElement.hide(event);
 };
 
-export { create }
+function destroy(event) {
+  const id = event.currentTarget.dataset.id;
+  
+  Task.destroy(id)
+}
+
+export { create, destroy }
