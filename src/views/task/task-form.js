@@ -40,12 +40,12 @@ function display(event) {
 
     control.className = "control";
 
-    label.for = "task_name";
-    label.textContent = "Name";
+    label.for = "task_text";
+    label.textContent = "Task";
     control.append(label);
 
     input.type = "text";
-    input.id = "task_name";
+    input.id = "task_text";
     control.append(input);
 
     form.append(control);
@@ -54,6 +54,7 @@ function display(event) {
   function createCancelButton() {
     const button = document.createElement("button");
     button.type = "button";
+    button.className = "button";
     button.textContent = "Cancel";
     button.dataset.projectId = project.id;
     button.onclick = hide;
@@ -80,6 +81,7 @@ function hide(event) {
   function createAddTaskButton() {
     const button = document.createElement("button");
     button.type = "button";
+    button.className = "button";
     button.textContent = "Add Task";
     button.dataset.projectId = project.id
     button.onclick = display;
@@ -90,9 +92,9 @@ function hide(event) {
 function parameters(event) {
   const taskForm = event.target.parentNode.parentNode;
   
-  const name = taskForm.querySelector("#task_name").value;
+  const text = taskForm.querySelector("#task_text").value;
   
-  return { name };
+  return { text };
 }
 
 export { display, hide, parameters }

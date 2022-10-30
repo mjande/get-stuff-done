@@ -55,6 +55,7 @@ function display(project) {
   function createAddTaskButton() {
     const button = document.createElement("button");
     button.type = "button";
+    button.className = "button";
     button.textContent = "Add Task";
     button.dataset.projectId = project.id
     button.onclick = TaskForm.display;

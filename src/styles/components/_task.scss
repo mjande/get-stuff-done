@@ -12,9 +12,12 @@
 
 .task {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 500px;
 }
 
-.task-controls {
+.task-control {
   display: flex;
   gap: 0.5rem;
   margin-left: 1rem;

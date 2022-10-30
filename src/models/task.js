@@ -12,13 +12,13 @@ function all() {
   return JSON.parse(localStorage.getItem("tasks")) || [];
 }
 
-function create({ id, name, projectId }) {
+function create({ id, text, projectId }) {
   if (id == undefined) {
     const tasks = all();
     id = tasks.length
   };
   
-  return { id, name, projectId, save }
+  return { id, text, projectId, save }
 }
 
 // Task methods (kept separate so they can be loaded to object from local storage)
