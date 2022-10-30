@@ -2,7 +2,7 @@ import * as Project from "../../models/project";
 import * as ProjectsController from "../../controllers/projects-controller";
 
 function display(event) {
-  const project = Project.find(event.target.dataset.id)
+  const project = Project.find(event.currentTarget.dataset.id)
   
   // Create layout
   const fragment = new DocumentFragment;
@@ -45,6 +45,7 @@ function display(event) {
   function createCancelButton() {
     const button = document.createElement("button");
     button.type = "button";
+    button.className = "button"
     button.textContent = "Cancel";
     button.onclick = hide;
     buttonsContainer.append(button);
@@ -53,6 +54,7 @@ function display(event) {
   function createDeleteButton() {
     const button = document.createElement("button");
     button.type = "button";
+    button.className = "button"
     button.textContent = "Delete";
     button.dataset.id = project.id;
     button.onclick = ProjectsController.destroy;

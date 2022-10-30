@@ -1,6 +1,12 @@
 @use '../variables' as *;
 
-.buttons-container {
+button {
+  border: none;
+  background-color: transparent;
+}
+
+.buttons-container,
+.task-buttons {
   display: flex;
   justify-content: end;
   gap: 1rem;
@@ -41,6 +47,14 @@ form .button {
   background-color: $powder-blue;
   border: solid;
   transition: transform 0.5s;
+}
+
+.task-buttons {
+  opacity: 0;
+}
+
+.task:hover .task-buttons {
+  opacity: 1;
 }
 
 a {

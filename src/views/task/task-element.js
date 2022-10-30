@@ -6,7 +6,7 @@ function display(task) {
   const taskControl = document.createElement("div");
   taskControl.className = "task-control";
   const buttonsContainer = document.createElement("div");
-  buttonsContainer.className = "buttons-container";
+  buttonsContainer.className = "task-buttons";
 
   // Create elements
   createControl();
@@ -37,7 +37,7 @@ function display(task) {
     button.type = "button";
 
     const icon = document.createElement("i");
-    icon.className = "fa-solid fa-trash-can";
+    icon.className = "fa-solid fa-trash-can icon";
 
     button.dataset.projectId = task.projectId;
     button.dataset.id = task.id;

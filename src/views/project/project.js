@@ -40,9 +40,15 @@ function display(project) {
 
   function createDeleteButton() {
     const button = document.createElement("i");
-    button.className = "fa-solid fa-trash-can icon";
+    button.type = "button";
+
+    const icon = document.createElement("i");
+    icon.className = "fa-solid fa-trash-can icon";
+
     button.dataset.id = project.id;
     button.onclick = DeleteProjectFormElement.display;
+
+    button.append(icon);
     headerContainer.append(button);
   };
 
