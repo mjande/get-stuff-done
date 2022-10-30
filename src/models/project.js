@@ -23,8 +23,13 @@ function create({ id, name }) {
 };
 
 function destroy(id) {
-  let projects = all();
+  // Destroy all related tasks
+  const project = find(id);
+  project.tasks().forEach((task) => {
+    Task.destroy(task.id);
+  });
 
+  let projects = all();
   const index = projects.findIndex((project) => id == project.id)
 
   projects.splice(index, 1);
