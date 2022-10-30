@@ -21,3 +21,19 @@
   display: flex;
   gap: 0.5rem;
 }
+
+.complete {
+  text-decoration: line-through;
+}
+
+.priority1 {
+  color: red;
+}
+
+.priority2 {
+  color: orange;
+}
+
+.priority3 {
+  color: blue;
+}
