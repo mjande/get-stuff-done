@@ -1,4 +1,5 @@
 import * as Project from "../../models/project";
+import * as TasksController from "../../controllers/tasks-controller";
 
 function display(event) {
   const project = Project.find(event.target.dataset.projectId);
@@ -39,12 +40,12 @@ function display(event) {
 
     control.className = "control";
 
-    label.for = "task[name]";
+    label.for = "task_name";
     label.textContent = "Name";
     control.append(label);
 
     input.type = "text";
-    input.id = "task[name]";
+    input.id = "task_name";
     control.append(input);
 
     form.append(control);
@@ -65,7 +66,7 @@ function display(event) {
     button.className = "button";
     button.textContent = "Add Task";
     button.dataset.projectId = project.id;
-    button.onclick = TasksController.create();
+    button.onclick = TasksController.create;
     buttonsContainer.appendChild(button);
   }
 };
@@ -84,6 +85,14 @@ function hide(event) {
     button.onclick = display;
     document.querySelector(".new-task").replaceChild(button, taskForm);
   }
+};
+
+function parameters(event) {
+  const taskForm = event.target.parentNode.parentNode;
+  
+  const name = taskForm.querySelector("#task_name").value;
+  
+  return { name };
 }
 
-export { display }
+export { display, hide, parameters }
