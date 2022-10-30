@@ -1,6 +1,9 @@
 import * as ProjectsController from "../../controllers/projects-controller";
+import * as Project from "../../models/project";
 
-function display() {
+function display(event) {
+  const project = Project.find(event.currentTarget.dataset.id);
+  
   // Create layout
   const fragment = new DocumentFragment;
   const formContainer = document.createElement("div");
@@ -28,7 +31,13 @@ function display() {
   // Element functions
   function createHeader() {
     const header = document.createElement("h1");
-    header.textContent = "New Project";
+    
+    if (project) {
+      header.textContent = "Edit Project"
+    } else {
+      header.textContent = "New Project";
+    };
+    
     formContainer.appendChild(header);
   };
 
@@ -44,6 +53,9 @@ function display() {
     
     input.type = "text";
     input.id = "project[name]";
+    if (project) {
+      input.value = project.name;
+    };
 
     control.appendChild(label);
     control.appendChild(input);
@@ -63,7 +75,13 @@ function display() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "button";
-    button.textContent = "Create Project";
+
+    if (project) {
+      button.textContent = "Update Project"
+    } else {
+      button.textContent = "Create Project";
+    };
+    
     button.onclick = ProjectsController.create;
     buttonsContainer.appendChild(button);
   }

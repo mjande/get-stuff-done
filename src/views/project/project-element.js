@@ -1,3 +1,4 @@
+import * as ProjectFormElement from "./project-form";
 import * as DeleteProjectFormElement from "./delete-project-form";
 import * as TaskForm from "../task/task-form";
 import * as TaskElement from "../task/task-element";
@@ -9,6 +10,8 @@ function create(project) {
   projectElement.className = "project";
   const headerContainer = document.createElement("div");
   headerContainer.className = "level";
+  const buttonsContainer = document.createElement("div");
+  buttonsContainer.className = "buttons-container";
   const tasksContainer = document.createElement("div");
   tasksContainer.className = "tasks";
   const newTaskContainer = document.createElement("div");
@@ -16,6 +19,7 @@ function create(project) {
 
   // Create elements
   createHeader();
+  createEditButton();
   createDeleteButton();
   createTasksHeader();
   createTasks();
@@ -23,6 +27,7 @@ function create(project) {
 
   // Attach layout to fragment
   projectElement.prepend(headerContainer);
+  headerContainer.append(buttonsContainer);
   projectElement.append(tasksContainer);
   projectElement.append(newTaskContainer);
   fragment.append(projectElement);
@@ -34,8 +39,22 @@ function create(project) {
     headerContainer.append(header);
   };
 
+  function createEditButton() {
+    const button = document.createElement("button");
+    button.type = "button";
+
+    const icon = document.createElement("i");
+    icon.className = "fa-solid fa-pen-to-square icon";
+
+    button.dataset.id = project.id;
+    button.onclick = ProjectFormElement.display;
+
+    button.append(icon);
+    buttonsContainer.append(button);
+  }
+
   function createDeleteButton() {
-    const button = document.createElement("i");
+    const button = document.createElement("button");
     button.type = "button";
 
     const icon = document.createElement("i");
@@ -45,7 +64,7 @@ function create(project) {
     button.onclick = DeleteProjectFormElement.display;
 
     button.append(icon);
-    headerContainer.append(button);
+    buttonsContainer.append(button);
   };
 
   function createTasksHeader() {
