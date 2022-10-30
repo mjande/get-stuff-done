@@ -12,7 +12,7 @@ function create() {
 
   ProjectElement.create(project).display();
 
-  ProjectLinkElement.display(project);
+  ProjectLinkElement.create(project).display();
 
   ProjectFormElement.hide();
 };
@@ -23,6 +23,22 @@ function show(event) {
   const project = Project.find(id);
 
   ProjectElement.create(project).display();
+}
+
+function update(event) {
+  const id = event.currentTarget.dataset.id;
+  const project = Project.find(id);
+
+  // Update record in local storage
+  project.name = ProjectFormElement.parameters().name;
+  project.save();
+
+  // Update project link in sidebar
+  const oldProjectLink = document.querySelector(`a[data-id="${id}"]`);
+  if (oldProjectLink.textContent != project.name) {
+    const newProjectLink = ProjectLinkElement.create(project).fragment;
+    document.querySelector(".project-links").replaceChild(newProjectLink, oldProjectLink);
+  }
 }
 
 function destroy(event) {
@@ -40,4 +56,4 @@ function destroy(event) {
   DeleteProjectFormElement.hide();
 }
 
-export { create, show, destroy };
+export { create, show, update, destroy };

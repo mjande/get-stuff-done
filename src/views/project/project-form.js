@@ -77,12 +77,15 @@ function display(event) {
     button.className = "button";
 
     if (project) {
-      button.textContent = "Update Project"
+      button.textContent = "Update Project";
+      button.dataset.id = project.id;
+      button.onclick = ProjectsController.update;
     } else {
       button.textContent = "Create Project";
+      button.onclick = ProjectsController.create;
     };
+
     
-    button.onclick = ProjectsController.create;
     buttonsContainer.appendChild(button);
   }
 };

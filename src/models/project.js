@@ -5,8 +5,12 @@ function find(id) {
 
   let project = projects.find((project) => project.id == id);
 
-  // Restore project methods to loaded project
-  return Object.assign(project, { save, tasks })
+  if (project == undefined) {
+    return undefined;
+  } else {
+    // Restore project methods to loaded project
+    return Object.assign(project, { save, tasks })
+  };
 }
 
 function all() {
@@ -39,8 +43,15 @@ function destroy(id) {
 // Object methods (kept separate so they can be loaded to object from local storage)
 function save() {
   const projects = all();
+  const recordIndex = projects.findIndex((project) => project.id == this.id);
+ 
+  // If a record for this project already exists, replace it; else, add it to projects array
+  if (recordIndex == -1) {
+    projects.push(this);
+  } else {
+    projects.splice(recordIndex, 1, this);
+  };
 
-  projects.push(this);
   localStorage.setItem("projects", JSON.stringify(projects));
 };
 

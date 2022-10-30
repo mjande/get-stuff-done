@@ -1,6 +1,6 @@
 import * as ProjectController from "../../controllers/projects-controller";
 
-function display(project) {
+function create(project) {
   const fragment = new DocumentFragment;
 
   const link = document.createElement("a");
@@ -10,7 +10,11 @@ function display(project) {
   link.onclick = ProjectController.show;
   fragment.append(link);
 
-  document.querySelector(".project-links").append(fragment);
+  function display() {
+    document.querySelector(".project-links").append(fragment);
+  }
+
+  return { fragment, display }  
 };
 
-export { display }
+export { create }
