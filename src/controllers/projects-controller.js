@@ -38,7 +38,10 @@ function update(event) {
   if (oldProjectLink.textContent != project.name) {
     const newProjectLink = ProjectLinkElement.create(project).fragment;
     document.querySelector(".project-links").replaceChild(newProjectLink, oldProjectLink);
-  }
+  };
+
+  // Hide project form
+  ProjectFormElement.hide();
 }
 
 function destroy(event) {
