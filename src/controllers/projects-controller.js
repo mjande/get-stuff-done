@@ -1,6 +1,6 @@
 import * as ProjectFormElement from "../views/project/project-form";
 import * as Project from "../models/project";
-import * as ProjectElement from "../views/project/project";
+import * as ProjectElement from "../views/project/project-element";
 import * as ProjectLinkElement from "../views/project/project-link";
 import * as DeleteProjectFormElement from "../views/project/delete-project-form";
 
