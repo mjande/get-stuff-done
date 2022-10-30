@@ -25,10 +25,16 @@ function create(task) {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.id = "task_completion";
+    checkbox.onchange = TasksController.toggleCompletion;
     
     const text = document.createElement("label");
     text.for = "task_completion";
     text.textContent = task.text;
+
+    if (task.isCompleted) {
+      checkbox.setAttribute("checked", "")
+      text.className = "completed"
+    }
 
     taskControl.append(checkbox);
     taskControl.append(text);

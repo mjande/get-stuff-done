@@ -14,6 +14,23 @@ function create(event) {
   TaskFormElement.hide(event);
 };
 
+function toggleCompletion(event) {
+  const id = event.target.parentNode.parentNode.dataset.id;
+  const task = Task.find(id);
+
+  if (task.isCompleted) {
+    task.isCompleted = false;
+  } else {
+    task.isCompleted = true;
+  }
+  
+  task.save();
+  console.log(JSON.parse(localStorage.tasks));
+
+  const text = event.target.parentNode.querySelector("label");
+  text.classList.toggle("completed");
+}
+
 function destroy(event) {
   // Remove task from local storage
   const id = event.currentTarget.dataset.id;
@@ -23,4 +40,4 @@ function destroy(event) {
   document.querySelector(`[data-id="${id}"].task`).remove();
 }
 
-export { create, destroy }
+export { create, toggleCompletion, destroy }

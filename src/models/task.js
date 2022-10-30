@@ -1,5 +1,3 @@
-import * as Project from "../models/project";
-
 function find(id) {
   const tasks = all();
 
@@ -17,8 +15,10 @@ function create({ id, text, projectId }) {
     const tasks = all();
     id = tasks.length
   };
+
+  let isCompleted = false;
   
-  return { id, text, projectId, save }
+  return { id, text, projectId, isCompleted, save }
 };
 
 function destroy(id) {
@@ -32,8 +32,16 @@ function destroy(id) {
 // Task methods (kept separate so they can be loaded to object from local storage)
 function save() {
   const tasks = all();
+  const recordIndex = tasks.findIndex((task) => task.id == this.id);
 
-  tasks.push(this);
+  // If a record for this task already exists, replace it; else, add it to tasks array
+
+  if (recordIndex == -1) {
+    tasks.push(this);
+  } else {
+    tasks.splice(recordIndex, 1, this);
+  }
+
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
