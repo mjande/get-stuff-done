@@ -5,10 +5,12 @@ import * as Task from "../models/task";
 function create(event) {
   const parameters = TaskFormElement.parameters(event);
   const projectId = event.target.dataset.projectId;
-  console.log(projectId);
 
-  // const task = Task.create({ name: parameters.name, projectId  });
-  // task.save();
+  const task = Task.create({ name: parameters.name, projectId  });
+  console.log(task);
+  
+  task.save();
+  console.log(JSON.parse(localStorage.tasks));
 
   // TaskElement.display(task);
 
