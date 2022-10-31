@@ -6,7 +6,8 @@ function create(formData) {
   const task = Task.create({ 
     text: formData.get("text"), 
     projectId: formData.get("projectId"),
-    priority: formData.get("priority")  
+    priority: formData.get("priority"),
+    dueDate: formData.get("dueDate")  
   });
   task.save();
 
@@ -15,7 +16,7 @@ function create(formData) {
 };
 
 function toggleCompletion(event) {
-  const id = event.target.parentNode.parentNode.dataset.id;
+  const id = event.target.parentNode.parentNode.parentNode.parentNode.dataset.id;
   const task = Task.find(id);
 
   if (task.isCompleted) {

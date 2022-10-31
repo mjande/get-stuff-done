@@ -1,5 +1,6 @@
 import * as TasksController from "../../controllers/tasks-controller";
 import * as TaskFormElement from "./task-form";
+import format from 'date-fns/format'
 
 function create(task) {
   // Create layout
@@ -9,6 +10,7 @@ function create(task) {
   taskContainer.dataset.id = task.id;
   const taskElement = document.createElement("div");
   taskElement.className = `task priority${task.priority}`;
+  const taskLeft = document.createElement("div");
   const taskControl = document.createElement("div");
   taskControl.className = "task-control";
   const buttonsContainer = document.createElement("div");
@@ -16,12 +18,13 @@ function create(task) {
 
   // Create elements
   createControl();
+  createDueDate();
   createEditButton();
   createDeleteButton();
 
   // Attach layout to fragment 
   taskContainer.append(taskElement);
-  taskElement.append(taskControl);
+  taskElement.append(taskLeft);
   taskElement.append(buttonsContainer);
   fragment.append(taskContainer);
 
@@ -43,7 +46,14 @@ function create(task) {
 
     taskControl.append(checkbox);
     taskControl.append(text);
+    taskLeft.append(taskControl);
   };
+
+  function createDueDate() {
+    const dueDate = document.createElement("div");
+    dueDate.textContent = "Due: " + format(new Date(task.dueDate), "eee, MMM do y")
+    taskLeft.append(dueDate);
+  }
 
   function createEditButton() {
     const button = document.createElement("button");

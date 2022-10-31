@@ -22,6 +22,7 @@ function display(event) {
   createProjectIdField();
   createTextField();
   createPriorityButtons();
+  createDateField();
   createCancelButton();
   createSubmitButton();
   attachListener();
@@ -126,6 +127,24 @@ function display(event) {
     fieldset.append(legend);
     fieldset.append(buttonsContainer);
     form.append(fieldset);
+  };
+
+  function createDateField() {
+    const control = document.createElement("div");
+    control.className = "control";
+
+    const label = document.createElement("label");
+    label.for = "task_due-date";
+    label.textContent = "Due Date";
+    control.append(label);
+
+    const input = document.createElement("input");
+    input.type = "date";
+    input.id = "task_due-date";
+    input.name = "dueDate";
+    control.append(input);
+
+    form.append(control);
   }
 
   function createCancelButton() {

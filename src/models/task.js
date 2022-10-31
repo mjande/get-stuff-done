@@ -14,15 +14,15 @@ function all() {
   return JSON.parse(localStorage.getItem("tasks")) || [];
 }
 
-function create({ id, text, projectId, priority }) {
+function create({ id, text, projectId, priority, dueDate }) {
   if (id == undefined) {
     const tasks = all();
-    id = tasks.length
+    id = tasks.length;
   };
 
   let isCompleted = false;
   
-  return { id, text, projectId, isCompleted, priority, save }
+  return { id, text, projectId, isCompleted, priority, dueDate, save }
 };
 
 function destroy(id) {
