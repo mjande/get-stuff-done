@@ -35,6 +35,7 @@ function create(project) {
   // Element functions
   function createHeader() {
     const header = document.createElement("h2");
+    header.className = "project-header";
     header.textContent = project.name;
     headerContainer.append(header);
   };

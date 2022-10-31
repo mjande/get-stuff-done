@@ -40,6 +40,9 @@ function update(event) {
     document.querySelector(".project-links").replaceChild(newProjectLink, oldProjectLink);
   };
 
+  // Update header in main
+  document.querySelector(".project-header").textContent = project.name;
+
   // Hide project form
   ProjectFormElement.hide();
 }
