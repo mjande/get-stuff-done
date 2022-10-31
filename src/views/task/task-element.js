@@ -1,11 +1,14 @@
 import * as TasksController from "../../controllers/tasks-controller";
+import * as TaskFormElement from "./task-form";
 
 function create(task) {
   // Create layout
   const fragment = new DocumentFragment;
+  const taskContainer = document.createElement("div");
+  taskContainer.className = "task-container";
+  taskContainer.dataset.id = task.id;
   const taskElement = document.createElement("div");
   taskElement.className = `task priority${task.priority}`;
-  taskElement.dataset.id = task.id;
   const taskControl = document.createElement("div");
   taskControl.className = "task-control";
   const buttonsContainer = document.createElement("div");
@@ -13,12 +16,14 @@ function create(task) {
 
   // Create elements
   createControl();
+  createEditButton();
   createDeleteButton();
 
   // Attach layout to fragment 
+  taskContainer.append(taskElement);
   taskElement.append(taskControl);
   taskElement.append(buttonsContainer);
-  fragment.append(taskElement);
+  fragment.append(taskContainer);
 
   // Element functions
   function createControl() {
@@ -40,6 +45,20 @@ function create(task) {
     taskControl.append(text);
   };
 
+  function createEditButton() {
+    const button = document.createElement("button");
+    button.type = "button";
+
+    const icon = document.createElement("icon");
+    icon.className = "fa-solid fa-pen-to-square icon";
+
+    button.dataset.id = task.id;
+    button.onclick = TaskFormElement.display;
+
+    button.append(icon);
+    buttonsContainer.append(button);
+  }
+
   function createDeleteButton() {
     const button = document.createElement("button");
     button.type = "button";
@@ -55,12 +74,7 @@ function create(task) {
     buttonsContainer.append(button);
   }
 
-  // Display function 
-  function display() {
-    document.querySelector(".tasks").append(fragment);
-  };
-
-  return { fragment, display }
+  return { fragment }
 };
 
 export { create }

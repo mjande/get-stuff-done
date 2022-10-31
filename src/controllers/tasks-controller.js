@@ -1,6 +1,6 @@
-import * as TaskFormElement from "../views/task/task-form";
 import * as Task from "../models/task";
-import * as TaskElement from "../views/task/task-element";
+import * as ProjectElement from "../views/project/project-element";
+import * as Project from "../models/project";
 
 function create(formData) {  
   const task = Task.create({ 
@@ -10,9 +10,8 @@ function create(formData) {
   });
   task.save();
 
-  TaskElement.create(task).display();
-
-  TaskFormElement.hide(formData.get("projectId"));
+  const project = Project.find(task.projectId);
+  ProjectElement.create(project).display();
 };
 
 function toggleCompletion(event) {
@@ -29,6 +28,20 @@ function toggleCompletion(event) {
 
   const text = event.target.parentNode.querySelector("label");
   text.classList.toggle("completed");
+};
+
+function update(formData) {
+  const id = formData.get("id");
+  const task = Task.find(id);
+
+  // Update task in local storage
+  task.text = formData.get("text");
+  task.priority = formData.get("priority");
+  task.save();
+
+  // Update task display
+  const project = Project.find(task.projectId);
+  ProjectElement.create(project).display();
 }
 
 function destroy(event) {
@@ -40,4 +53,4 @@ function destroy(event) {
   document.querySelector(`[data-id="${id}"].task`).remove();
 }
 
-export { create, toggleCompletion, destroy }
+export { create, toggleCompletion, update, destroy }

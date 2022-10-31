@@ -1,14 +1,16 @@
+import * as Task from "../../models/task";
 import * as Project from "../../models/project";
+import * as TaskElement from "./task-element";
 import * as TasksController from "../../controllers/tasks-controller";
 
 function display(event) {
-  const project = Project.find(event.target.dataset.projectId);
-  const newTaskButton = document.querySelector(".new-task").firstChild;
+  const task = Task.find(event.currentTarget.dataset.id);
+  const projectId = event.currentTarget.dataset.projectId;
   
   // Create layout
   const fragment = new DocumentFragment;
   const formContainer = document.createElement("div");
-  formContainer.className = "form-container";
+  formContainer.className = "task-form-container";
   const form = document.createElement("form");
   form.className = "task-form";
   const buttonsContainer = document.createElement("div");
@@ -16,6 +18,7 @@ function display(event) {
 
   // Create elements
   createHeader();
+  createIdField();
   createProjectIdField();
   createTextField();
   createPriorityButtons();
@@ -27,20 +30,40 @@ function display(event) {
   formContainer.append(form);
   form.append(buttonsContainer);
   fragment.append(formContainer);
-  document.querySelector(".new-task").replaceChild(formContainer, newTaskButton);
+  if (task) {
+    const taskElement = document.querySelector(`.task-container[data-id="${task.id}"]`);
+    taskElement.replaceChild(formContainer, taskElement.firstChild);
+  } else {
+    const newTaskButton = document.querySelector(".new-task").firstChild;
+    document.querySelector(".new-task").replaceChild(formContainer, newTaskButton);
+  }
 
   // Element functions
   function createHeader() {
     const header = document.createElement("h4");
-    header.textContent = "New Task";
+    if (task) {
+      header.textContent = "Update Task";
+    } else {
+      header.textContent = "New Task";
+    }
     formContainer.appendChild(header);
   };
+
+  function createIdField() {
+    if (task) {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "id";
+      input.value = task.id;
+      form.append(input);
+    }
+  }
 
   function createProjectIdField() {
     const input = document.createElement("input");
     input.type = "hidden";
     input.name = "projectId";
-    input.value = project.id;
+    input.value = projectId;
     form.append(input);
   }
 
@@ -58,6 +81,9 @@ function display(event) {
     input.type = "text";
     input.id = "task_text";
     input.name = "text";
+    if (task) {
+      input.value = task.text;
+    }
     control.append(input);
 
     form.append(control);
@@ -78,9 +104,9 @@ function display(event) {
       button.name = "priority";
       button.value = i;
       button.id = `priority${i}`;
-      if (i == 4) {
+      if (i == 4 && !task) {
         button.checked = true;
-      }
+      }  
       control.append(button);
 
       const label = document.createElement("label");
@@ -90,6 +116,11 @@ function display(event) {
       control.append(label);
 
       buttonsContainer.append(control);
+    }
+
+    if (task) {
+      const button = buttonsContainer.querySelector(`#priority${task.priority}`);
+      button.checked = true;
     }
 
     fieldset.append(legend);
@@ -102,16 +133,22 @@ function display(event) {
     button.type = "button";
     button.className = "button";
     button.textContent = "Cancel";
-    button.onclick = () => {
-      hide(project.id)
+    if (task) {
+      button.dataset.id = task.id
     }
+    button.dataset.projectId = projectId;
+    button.onclick = cancelForm;
     buttonsContainer.append(button);
   }
 
   function createSubmitButton() {
     const button = document.createElement("button");
     button.className = "button";
-    button.textContent = "Add Task";
+    if (task) {
+      button.textContent = "Update Task";
+    } else {
+      button.textContent = "Add Task";
+    }
     buttonsContainer.appendChild(button);
   }
 
@@ -120,27 +157,38 @@ function display(event) {
       event.preventDefault();
       const formData = new FormData(form);
 
-      TasksController.create(formData)
+      if (formData.has("id")) {
+        TasksController.update(formData)
+      } else {
+        TasksController.create(formData)
+      }
     }
   }
 };
 
-function hide(projectId) {
-  const taskForm = document.querySelector(".new-task").firstChild;
-  const project = Project.find(projectId);
+function cancelForm(event) {  
+  const newTaskForm = document.querySelector(".new-task .task-form-container")
+  const editTaskForm = document.querySelector(".tasks .task-form-container");
 
-  createAddTaskButton();
+  if (newTaskForm) {
+    newTaskForm.remove();
+    createAddTaskButton();
+  } else {
+    const id = event.target.dataset.id;
+    const container = document.querySelector(`.task-container[data-id="${id}"]`);
+    const taskElement = TaskElement.create(Task.find(id)).fragment;
+    container.replaceChild(taskElement.firstChild, editTaskForm);
+  };
 
   function createAddTaskButton() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "button";
     button.textContent = "Add Task";
-    button.dataset.projectId = project.id;
+    button.dataset.projectId = event.target.dataset.projectId;
     button.onclick = display;
-    document.querySelector(".new-task").replaceChild(button, taskForm);
+    document.querySelector(".new-task").append(button);
   }
 };
 
-
-export { display, hide }
+export { display }

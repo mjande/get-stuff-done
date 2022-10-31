@@ -3,7 +3,11 @@ function find(id) {
 
   let task = tasks.find((task) => task.id == id);
 
-  return Object.assign(task, { save })
+  if (task == undefined) {
+    return undefined
+  } else {
+    return Object.assign(task, { save })
+  }
 }
 
 function all() {

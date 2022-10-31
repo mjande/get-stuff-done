@@ -87,7 +87,7 @@ function create(project) {
     button.type = "button";
     button.className = "button";
     button.textContent = "Add Task";
-    button.dataset.projectId = project.id
+    button.dataset.projectId = project.id;
     button.onclick = TaskForm.display;
     newTaskContainer.append(button);
   }
@@ -104,4 +104,14 @@ function create(project) {
   return { fragment, display }
 }
 
-export { create }
+function createAddTaskButton(projectId) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "button";
+  button.textContent = "Add Task";
+  button.dataset.projectId = projectId;
+  button.onclick = TaskForm.display;
+  document.querySelector(".new-task").append(button);
+};
+
+export { create, createAddTaskButton }
