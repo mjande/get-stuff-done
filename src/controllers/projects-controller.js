@@ -4,10 +4,8 @@ import * as ProjectElement from "../views/project/project-element";
 import * as ProjectLinkElement from "../views/project/project-link";
 import * as DeleteProjectFormElement from "../views/project/delete-project-form";
 
-function create() {
-  const parameters = ProjectFormElement.parameters();
-
-  const project = Project.create({ name: parameters.name });
+function create(formData) {
+  const project = Project.create({ name: formData.get("name") });
   project.save();
 
   ProjectElement.create(project).display();

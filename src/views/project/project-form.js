@@ -20,6 +20,7 @@ function display(event) {
   createNameField();
   createCancelButton();
   createSubmitButton();
+  attachListener();
 
   // Attach elements to fragment and attach fragment to page
   formContainer.append(form);
@@ -53,6 +54,7 @@ function display(event) {
     
     input.type = "text";
     input.id = "project[name]";
+    input.name = "name";
     if (project) {
       input.value = project.name;
     };
@@ -73,20 +75,27 @@ function display(event) {
 
   function createSubmitButton() {
     const button = document.createElement("button");
-    button.type = "button";
     button.className = "button";
 
     if (project) {
       button.textContent = "Update Project";
       button.dataset.id = project.id;
-      button.onclick = ProjectsController.update;
+      // button.onclick = ProjectsController.update;
     } else {
       button.textContent = "Create Project";
-      button.onclick = ProjectsController.create;
+      // button.onclick = ProjectsController.create;
     };
-
     
     buttonsContainer.appendChild(button);
+  }
+
+  function attachListener() {
+    form.onsubmit = (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      
+      ProjectsController.create(formData);
+    }
   }
 };
 
