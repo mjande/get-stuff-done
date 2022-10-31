@@ -38,6 +38,7 @@ function update(formData) {
   // Update task in local storage
   task.text = formData.get("text");
   task.priority = formData.get("priority");
+  task.dueDate = formData.get("dueDate");
   task.save();
 
   // Update task display

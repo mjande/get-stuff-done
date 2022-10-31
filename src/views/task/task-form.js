@@ -143,6 +143,9 @@ function display(event) {
     input.id = "task_due-date";
     input.name = "dueDate";
     control.append(input);
+    if (task) {
+      input.value = task.dueDate;
+    }
 
     form.append(control);
   }
