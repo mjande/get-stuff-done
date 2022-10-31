@@ -10,7 +10,7 @@ function all() {
   return JSON.parse(localStorage.getItem("tasks")) || [];
 }
 
-function create({ id, text, projectId }) {
+function create({ id, text, projectId, priority }) {
   if (id == undefined) {
     const tasks = all();
     id = tasks.length
@@ -18,7 +18,7 @@ function create({ id, text, projectId }) {
 
   let isCompleted = false;
   
-  return { id, text, projectId, isCompleted, save }
+  return { id, text, projectId, isCompleted, priority, save }
 };
 
 function destroy(id) {

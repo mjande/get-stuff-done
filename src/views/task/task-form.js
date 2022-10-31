@@ -17,6 +17,7 @@ function display(event) {
   // Create elements
   createHeader();
   createNameField();
+  createPriorityButtons();
   createCancelButton();
   createSubmitButton();
 
@@ -50,6 +51,36 @@ function display(event) {
 
     form.append(control);
   };
+
+  function createPriorityButtons() {
+    const fieldset = document.createElement("fieldset");
+    const legend = document.createElement("legend");
+    legend.textContent = "Priority";
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.className = "radio-buttons";
+   
+    for (let i = 1; i <= 4; i++) {
+      const control = document.createElement("div");
+      control.className = `priority${i}`
+      const button = document.createElement("input");
+      button.type = "radio";
+      button.name = "priority";
+      button.id = `priority${i}`;
+      control.append(button);
+
+      const label = document.createElement("label");
+      label.htmlFor = `priority${i}`;
+      label.textContent = `Priority ${i}`;
+      label.className = `priority${i}`;
+      control.append(label);
+
+      buttonsContainer.append(control);
+    }
+
+    fieldset.append(legend);
+    fieldset.append(buttonsContainer);
+    form.append(fieldset);
+  }
 
   function createCancelButton() {
     const button = document.createElement("button");
