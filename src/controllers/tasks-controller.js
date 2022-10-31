@@ -2,16 +2,17 @@ import * as TaskFormElement from "../views/task/task-form";
 import * as Task from "../models/task";
 import * as TaskElement from "../views/task/task-element";
 
-function create(event) {
-  const parameters = TaskFormElement.parameters(event);
-  const projectId = event.target.dataset.projectId;
-
-  const task = Task.create({ text: parameters.text, projectId  });
+function create(formData) {  
+  const task = Task.create({ 
+    text: formData.get("text"), 
+    projectId: formData.get("projectId"),
+    priority: formData.get("priority")  
+  });
   task.save();
 
   TaskElement.create(task).display();
 
-  TaskFormElement.hide(event);
+  TaskFormElement.hide(formData.get("projectId"));
 };
 
 function toggleCompletion(event) {
@@ -25,7 +26,6 @@ function toggleCompletion(event) {
   }
   
   task.save();
-  console.log(JSON.parse(localStorage.tasks));
 
   const text = event.target.parentNode.querySelector("label");
   text.classList.toggle("completed");

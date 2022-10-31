@@ -16,10 +16,12 @@ function display(event) {
 
   // Create elements
   createHeader();
-  createNameField();
+  createProjectIdField();
+  createTextField();
   createPriorityButtons();
   createCancelButton();
   createSubmitButton();
+  attachListener();
 
   // Attach elements to fragment
   formContainer.append(form);
@@ -32,9 +34,17 @@ function display(event) {
     const header = document.createElement("h4");
     header.textContent = "New Task";
     formContainer.appendChild(header);
+  };
+
+  function createProjectIdField() {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "projectId";
+    input.value = project.id;
+    form.append(input);
   }
 
-  function createNameField() {
+  function createTextField() {
     const control = document.createElement("div");
     const label = document.createElement("label");
     const input = document.createElement("input");
@@ -47,6 +57,7 @@ function display(event) {
 
     input.type = "text";
     input.id = "task_text";
+    input.name = "text";
     control.append(input);
 
     form.append(control);
@@ -65,7 +76,11 @@ function display(event) {
       const button = document.createElement("input");
       button.type = "radio";
       button.name = "priority";
+      button.value = i;
       button.id = `priority${i}`;
+      if (i == 4) {
+        button.checked = true;
+      }
       control.append(button);
 
       const label = document.createElement("label");
@@ -87,25 +102,32 @@ function display(event) {
     button.type = "button";
     button.className = "button";
     button.textContent = "Cancel";
-    button.dataset.projectId = project.id;
-    button.onclick = hide;
+    button.onclick = () => {
+      hide(project.id)
+    }
     buttonsContainer.append(button);
   }
 
   function createSubmitButton() {
     const button = document.createElement("button");
-    button.type = "button";
     button.className = "button";
     button.textContent = "Add Task";
-    button.dataset.projectId = project.id;
-    button.onclick = TasksController.create;
     buttonsContainer.appendChild(button);
+  }
+
+  function attachListener() {
+    form.onsubmit = (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+
+      TasksController.create(formData)
+    }
   }
 };
 
-function hide(event) {
+function hide(projectId) {
   const taskForm = document.querySelector(".new-task").firstChild;
-  const project = Project.find(event.target.dataset.projectId);
+  const project = Project.find(projectId);
 
   createAddTaskButton();
 
@@ -114,18 +136,11 @@ function hide(event) {
     button.type = "button";
     button.className = "button";
     button.textContent = "Add Task";
-    button.dataset.projectId = project.id
+    button.dataset.projectId = project.id;
     button.onclick = display;
     document.querySelector(".new-task").replaceChild(button, taskForm);
   }
 };
 
-function parameters(event) {
-  const taskForm = event.target.parentNode.parentNode;
-  
-  const text = taskForm.querySelector("#task_text").value;
-  
-  return { text };
-}
 
-export { display, hide, parameters }
+export { display, hide }

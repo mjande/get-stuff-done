@@ -4,7 +4,7 @@ function create(task) {
   // Create layout
   const fragment = new DocumentFragment;
   const taskElement = document.createElement("div");
-  taskElement.className = "task";
+  taskElement.className = `task priority${task.priority}`;
   taskElement.dataset.id = task.id;
   const taskControl = document.createElement("div");
   taskControl.className = "task-control";
