@@ -23,12 +23,12 @@ function show(event) {
   ProjectElement.create(project).display();
 }
 
-function update(event) {
-  const id = event.currentTarget.dataset.id;
+function update(formData) {
+  const id = formData.get("id")
   const project = Project.find(id);
 
   // Update record in local storage
-  project.name = ProjectFormElement.parameters().name;
+  project.name = formData.get("name");
   project.save();
 
   // Update project link in sidebar

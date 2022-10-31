@@ -17,6 +17,7 @@ function display(event) {
 
   // Create elements
   createHeader();
+  createIdField();
   createNameField();
   createCancelButton();
   createSubmitButton();
@@ -41,6 +42,16 @@ function display(event) {
     
     formContainer.appendChild(header);
   };
+
+  function createIdField() {
+    if (project) {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "id";
+      input.value = project.id;
+      form.append(input);
+    }
+  }
 
   function createNameField() {
     const control = document.createElement("div");
@@ -79,11 +90,8 @@ function display(event) {
 
     if (project) {
       button.textContent = "Update Project";
-      button.dataset.id = project.id;
-      // button.onclick = ProjectsController.update;
     } else {
       button.textContent = "Create Project";
-      // button.onclick = ProjectsController.create;
     };
     
     buttonsContainer.appendChild(button);
@@ -93,8 +101,12 @@ function display(event) {
     form.onsubmit = (event) => {
       event.preventDefault();
       const formData = new FormData(form);
-      
-      ProjectsController.create(formData);
+
+      if (formData.has("id")) {
+        ProjectsController.update(formData);
+      } else {
+        ProjectsController.create(formData);
+      }
     }
   }
 };
@@ -104,10 +116,4 @@ function hide() {
   document.querySelector(".overlay").remove();
 }
 
-function parameters() {
-  const name = document.getElementById("project[name]").value;
-
-  return { name }
-}
-
-export { display, hide, parameters }
+export { display, hide }
