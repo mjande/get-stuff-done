@@ -1,8 +1,9 @@
 import * as Task from "../../models/task";
-import * as Project from "../../models/project";
 import * as TaskElement from "./task-element";
 import * as TasksController from "../../controllers/tasks-controller";
 
+
+// TODO: Clean up the logic for dispaying and hiding the task form
 function display(event) {
   const task = Task.find(event.currentTarget.dataset.id);
   const projectId = event.currentTarget.dataset.projectId;
